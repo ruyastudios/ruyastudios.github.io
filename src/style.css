@@ -436,6 +436,36 @@ body.hovering-card .cursor-badge {
   transform: translateY(0);
 }
 
+/* UI Selection Box & Handle Accents */
+.ui-selection-box {
+  position: relative;
+  display: inline-block;
+  border: 1.5px dashed rgba(79, 70, 229, 0.45);
+  border-radius: 6px;
+  padding: 2px 6px;
+  margin: 0 4px;
+}
+
+.ui-handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border: 1.5px solid #4F46E5;
+  border-radius: 1px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ui-handle-tl { top: -4px; left: -4px; }
+.ui-handle-tm { top: -4px; left: 50%; transform: translateX(-50%); }
+.ui-handle-tr { top: -4px; right: -4px; }
+.ui-handle-ml { top: 50%; left: -4px; transform: translateY(-50%); }
+.ui-handle-mr { top: 50%; right: -4px; transform: translateY(-50%); }
+.ui-handle-bl { bottom: -4px; left: -4px; }
+.ui-handle-bm { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.ui-handle-br { bottom: -4px; right: -4px; }
+
 .cycling-word-container {
   position: relative;
   display: inline-block;
@@ -1606,7 +1636,7 @@ canvas {
 
 @media (max-width: 868px) {
   .footer-top {
-    margin-bottom: 3.5rem;
+    margin-bottom: 4.5rem;
   }
   .footer-email-link {
     max-width: 92%;

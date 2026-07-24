@@ -248,34 +248,25 @@ if (cyclingContainer) {
     const tl = gsap.timeline({
       onComplete: () => {
         currentTextEl.textContent = texts[nextIndex];
-        gsap.set(currentTextEl, { opacity: 1, y: 0, filter: 'blur(0px)' });
-        gsap.set(nextTextEl, { opacity: 0, y: 0, filter: 'blur(0px)' });
+        gsap.set(currentTextEl, { opacity: 1, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
+        gsap.set(nextTextEl, { opacity: 0, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
         currentIndex = nextIndex;
-        setTimeout(morphNext, 2500); // Wait before next morph
+        setTimeout(morphNext, 2500);
       }
     });
 
-    // Animate container width to match the new word dynamically
-    const nextWidth = nextTextEl.offsetWidth;
-    tl.to(cyclingContainer, {
-      width: nextWidth + 'px',
-      duration: 0.8,
-      ease: 'power2.inOut'
-    }, 0);
-
-    // Animate current out
+    // Smoothly transition overlapping blurred text under SVG threshold matrix for liquid morph
     tl.to(currentTextEl, {
-      y: -20,
       opacity: 0,
-      filter: 'blur(8px)',
-      duration: 0.8,
+      filter: 'blur(14px)',
+      webkitFilter: 'blur(14px)',
+      duration: 0.95,
       ease: 'power2.inOut'
     }, 0);
 
-    // Animate next in
     tl.fromTo(nextTextEl, 
-      { y: 20, opacity: 0, filter: 'blur(8px)' },
-      { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8, ease: 'power2.inOut' },
+      { opacity: 0, filter: 'blur(14px)', webkitFilter: 'blur(14px)', y: 0 },
+      { opacity: 1, filter: 'blur(0px)', webkitFilter: 'blur(0px)', y: 0, duration: 0.95, ease: 'power2.inOut' },
       0
     );
   }
@@ -433,7 +424,10 @@ if (portfolioItems.length > 0) {
       animFrame = requestAnimationFrame(renderLoop);
     };
 
+    const isTouchDevice = () => window.matchMedia('(pointer: coarse)').matches;
+
     item.addEventListener('mouseenter', (e) => {
+      if (isTouchDevice() || (e && e.pointerType === 'touch')) return;
       isHovering = true;
       imageContainer.classList.add('active');
       const rect = item.getBoundingClientRect();
@@ -466,6 +460,7 @@ if (portfolioItems.length > 0) {
     });
 
     item.addEventListener('mousemove', (e) => {
+      if (isTouchDevice() || (e && e.pointerType === 'touch')) return;
       const rect = item.getBoundingClientRect();
       targetMousePos.x = e.clientX - rect.left;
       targetMousePos.y = e.clientY - rect.top;

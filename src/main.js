@@ -857,7 +857,7 @@ const projectData = {
     overview: "A corporate identity project for Rayyan International, centered on a geometric \"R\" monogram mark.",
     approach: "The monogram is built from interlocking negative space so the \"R\" reads clearly at both icon and word-mark scale, paired with a clean serif \"INTERNATIONAL\" lockup for a formal, corporate register.",
     outcome: "A primary logo mark delivered for use across brand touchpoints and backgrounds.",
-    images: ["/src/works/logos/Rayyan-1.jpg", "/src/works/logos/Rayyan-2.jpg", "/src/works/logos/Rayyan-3.jpg", "/src/works/logos/Rayyan-4.jpg"]
+    images: ["/src/works/Logos/Rayyan-1.jpg", "/src/works/Logos/Rayyan-2.jpg", "/src/works/Logos/Rayyan-3.jpg", "/src/works/Logos/Rayyan-4.jpg"]
   },
   "mercury": {
     title: "Mercury",
@@ -875,7 +875,7 @@ const projectData = {
     overview: "A dual corporate identity suite crafted for Rayyan International and Crescent Italy. This collection explores vector precision, negative space balance, and distinct brand positioning tailored for modern international commerce and regional retail identity.",
     approach: "For Rayyan International, developed a geometric 'R' monogram constructed from interlocking negative space to embody structure and corporate authority. For Crescent Italy, authored a dynamic crescent motif paired with high-contrast typography, evoking fluid motion and contemporary Italian elegance.",
     outcome: "Delivered primary logo marks, brand identity guidelines, and scalable vector suites optimized across digital applications, stationery, and physical touchpoints.",
-    images: ["/src/works/logos/1.jpg", "/src/works/logos/2.jpg", "/src/works/logos/3.jpg", "/src/works/logos/4.jpg"]
+    images: ["/src/works/Logos/1.jpg", "/src/works/Logos/2.jpg", "/src/works/Logos/3.jpg", "/src/works/Logos/4.jpg"]
   },
   "lysis-grafx": {
     title: "Lysis Grafx",

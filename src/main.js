@@ -987,12 +987,14 @@ if (projectModal && closeProjectModalBtn && projectCases.length) {
       
       projectModal.showModal();
       document.body.style.overflow = 'hidden';
+      lenis.stop();
     });
   });
   
   const closeProjectModal = () => {
     projectModal.close();
     document.body.style.overflow = '';
+    lenis.start();
   };
   
   closeProjectModalBtn.addEventListener('click', closeProjectModal);

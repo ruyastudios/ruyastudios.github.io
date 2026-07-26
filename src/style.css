@@ -491,6 +491,10 @@ body.hovering-card .cursor-badge {
   -webkit-filter: url(#threshold);
 }
 
+.cycling-word-container::after {
+  content: '\200b'; /* zero-width space forces a text baseline for absolute children */
+}
+
 @media (max-width: 680px) {
   .hero-headline {
     display: flex;

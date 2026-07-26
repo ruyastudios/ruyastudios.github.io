@@ -544,7 +544,7 @@ body.hovering-card .cursor-badge {
 
 .hero-subhead {
   max-width: 650px;
-  margin: 1.5rem auto 2.5rem;
+  margin: 1rem auto 1.5rem;
   font-size: 1.15rem;
   color: var(--ink-muted);
 }

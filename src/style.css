@@ -513,8 +513,7 @@ body.hovering-card .cursor-badge {
     margin-bottom: 0.25rem;
   }
   .hero-center-logo {
-    /* 40-55% of rendered font-size (em is relative to headline font-size when inside container or 0.45em) */
-    height: 0.48em;
+    height: 0.65em;
   }
   .hero-headline {
     display: flex;
@@ -530,7 +529,8 @@ body.hovering-card .cursor-badge {
     flex-direction: column;
     align-items: center;
     white-space: normal;
-    gap: 0.15rem;
+    gap: 0.4rem; /* increased from 0.15rem to compensate for -4px box inset */
+    margin-bottom: 0.15rem;
   }
   .headline-line-2 {
     display: flex;
@@ -557,6 +557,16 @@ body.hovering-card .cursor-badge {
     z-index: 2;
   }
   
+  /* Mobile UI Handles centered on the -4px / -8px inset border line */
+  .ui-selection-box .ui-handle-tl { top: calc(-4px - 3.5px); left: calc(-8px - 3.5px); }
+  .ui-selection-box .ui-handle-tm { top: calc(-4px - 3.5px); left: 50%; transform: translateX(-50%); }
+  .ui-selection-box .ui-handle-tr { top: calc(-4px - 3.5px); right: calc(-8px - 3.5px); }
+  .ui-selection-box .ui-handle-ml { top: 50%; left: calc(-8px - 3.5px); transform: translateY(-50%); }
+  .ui-selection-box .ui-handle-mr { top: 50%; right: calc(-8px - 3.5px); transform: translateY(-50%); }
+  .ui-selection-box .ui-handle-bl { bottom: calc(-4px - 3.5px); left: calc(-8px - 3.5px); }
+  .ui-selection-box .ui-handle-bm { bottom: calc(-4px - 3.5px); left: 50%; transform: translateX(-50%); }
+  .ui-selection-box .ui-handle-br { bottom: calc(-4px - 3.5px); right: calc(-8px - 3.5px); }
+
   .cycling-word-container {
     position: relative;
     display: inline-block;

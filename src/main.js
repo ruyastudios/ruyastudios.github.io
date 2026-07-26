@@ -244,19 +244,13 @@ if (cyclingContainer) {
 
   function morphNext() {
     const nextIndex = (currentIndex + 1) % texts.length;
-    nextTextEl.textContent = texts[nextIndex];
     const nextWidth = nextTextEl.offsetWidth;
-
-    // Apply the gooey SVG filter ONLY during the animation to preserve crisp vector anti-aliasing when resting
-    gsap.set(cyclingContainer, { filter: 'url(#threshold)', webkitFilter: 'url(#threshold)' });
-
+    
     const tl = gsap.timeline({
       onComplete: () => {
         currentTextEl.textContent = texts[nextIndex];
-        gsap.set(currentTextEl, { opacity: 1, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
-        gsap.set(nextTextEl, { opacity: 0, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
-        // Remove the filter so the static text regains full subpixel anti-aliasing
-        gsap.set(cyclingContainer, { filter: 'none', webkitFilter: 'none' });
+        gsap.set(currentTextEl, { opacity: 1, y: 0 });
+        gsap.set(nextTextEl, { opacity: 0, y: 0 });
         currentIndex = nextIndex;
         setTimeout(morphNext, 2500);
       }
@@ -269,18 +263,17 @@ if (cyclingContainer) {
       0
     );
 
-    // Smoothly transition overlapping blurred text under SVG threshold matrix for liquid morph
+    // Smoothly transition text opacity and position for a clean sliding morph without gooey blur
     tl.to(currentTextEl, {
       opacity: 0,
-      filter: 'blur(14px)',
-      webkitFilter: 'blur(14px)',
+      y: -20,
       duration: 0.95,
       ease: 'power2.inOut'
     }, 0);
 
     tl.fromTo(nextTextEl, 
-      { opacity: 0, filter: 'blur(14px)', webkitFilter: 'blur(14px)', y: 0 },
-      { opacity: 1, filter: 'blur(0px)', webkitFilter: 'blur(0px)', y: 0, duration: 0.95, ease: 'power2.inOut' },
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.95, ease: 'power2.inOut' },
       0
     );
   }

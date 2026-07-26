@@ -24,7 +24,7 @@
   <body>
 
     <!-- Live Update Version Badge -->
-    <div id="update-badge" class="update-badge">UPDATE #12</div>
+    <div id="update-badge" class="update-badge">UPDATE #13</div>
 
     <!-- Custom Magnetic Cursor -->
     <div id="custom-cursor" class="custom-cursor">
@@ -54,26 +54,13 @@
     </header>
 
     <!-- SVG Threshold Filter for Gooey Text Morphing Animation -->
-    <svg class="svg-filter-defs" aria-hidden="true" focusable="false" style="position: absolute; width: 0; height: 0; pointer-events: none; overflow: hidden;">
-      <defs>
-        <filter id="threshold">
-          <feColorMatrix 
-            in="SourceGraphic" 
-            type="matrix" 
-            values="1 0 0 0 0 
-                    0 1 0 0 0 
-                    0 0 1 0 0 
-                    0 0 0 255 -140" result="matrixOut" />
-          <feGaussianBlur in="matrixOut" stdDeviation="0.75" />
-        </filter>
-      </defs>
-    </svg>
+    <svg class="svg-filter-defs" aria-hidden="true" focusable="false" style="position: absolute; width: 0; height: 0; pointer-events: none; overflow: hidden;"></svg>
 
     <!-- Full-Page Fixed Video Background (Parallax) -->
     <div class="global-video-bg" aria-hidden="true">
       <video
         class="video-texture-player"
-        src="/src/assets/Designer_refining_workspace_anim._202607230316.mp4#t=0.1"
+        src="/src/assets/Designer_refining_workspace_anim._202607230316.mp4"
         autoplay
         loop
         muted

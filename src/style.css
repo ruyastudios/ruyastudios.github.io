@@ -501,6 +501,13 @@ body.hovering-card .cursor-badge {
   -webkit-filter: url(#threshold);
 }
 
+.cycling-word-container::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  visibility: hidden;
+}
+
 .hero-subhead {
   max-width: 650px;
   margin: 1.25rem auto 2.25rem;

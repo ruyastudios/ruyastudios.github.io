@@ -159,6 +159,7 @@ const initAmbientCanvas = (canvasId, withSnippets = false) => {
   };
 
   window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('load', resizeCanvas);
   resizeCanvas();
 
   const renderBackground = () => {

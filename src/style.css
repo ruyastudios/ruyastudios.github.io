@@ -246,6 +246,15 @@ body.hovering-card .cursor-badge {
   display: block;
 }
 
+/* Hide native controls on iOS Safari Low Power Mode */
+.video-texture-player::-webkit-media-controls {
+  display: none !important;
+}
+.video-texture-player::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 .glass-overlay {
   position: absolute;
   inset: 0;
@@ -501,8 +510,13 @@ body.hovering-card .cursor-badge {
     align-items: center;
     justify-content: center;
     gap: 0.15rem;
-    font-size: clamp(2.1rem, 9.5vw, 3.2rem);
+    font-size: clamp(2.8rem, 13vw, 4rem);
     line-height: 1.15;
+  }
+  
+  /* Hide absolute SVG line annotations on mobile as they break layout/stretch */
+  .annotation-layer, #services-annotations {
+    display: none !important;
   }
   .headline-line-1 {
     display: flex;

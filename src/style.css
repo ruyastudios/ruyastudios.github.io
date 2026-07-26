@@ -499,8 +499,11 @@ body.hovering-card .cursor-badge {
   -webkit-filter: url(#threshold);
 }
 
-.cycling-word-container::after {
-  content: '\200b'; /* zero-width space forces a text baseline for absolute children */
+.hero-subhead {
+  max-width: 650px;
+  margin: 1.25rem auto 2.25rem;
+  font-size: 1.15rem;
+  color: var(--ink-muted);
 }
 
 @media (max-width: 680px) {
@@ -534,17 +537,22 @@ body.hovering-card .cursor-badge {
     gap: 0.15rem;
   }
   
-  /* Selection box overlay on mobile */
+  /* Selection box overlay on mobile around cycling word container */
   .ui-selection-box {
-    position: absolute;
-    inset: -6px -8px;
+    position: relative;
+    display: inline-block;
+    border: none;
     padding: 0;
     margin: 0;
+  }
+  .ui-selection-box::before {
+    content: '';
+    position: absolute;
+    inset: -4px -8px;
+    border: 2px solid #B4A1FF;
+    border-radius: 2px;
     pointer-events: none;
     z-index: 2;
-  }
-  .ui-selection-box .ui-handle {
-    pointer-events: auto;
   }
   
   .cycling-word-container {
@@ -559,7 +567,7 @@ body.hovering-card .cursor-badge {
     font-size: clamp(1rem, 4.5vw, 1.125rem); /* ~16-18px */
     line-height: 1.45;
     max-width: 88vw;
-    margin: 0.75rem auto 1rem;
+    margin: 0.85rem auto 1.75rem;
   }
 }
 

@@ -19,13 +19,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
     
     <!-- Main Application Module -->
-      <script type="module" crossorigin src="./assets/index-CFmxi29-.js"></script>
+      <script type="module" crossorigin src="./assets/index-BqVQ63Xs.js"></script>
       <link rel="stylesheet" crossorigin href="./assets/index-JWsBRpBk.css">
     </head>
   <body>
 
     <!-- Live Update Version Badge -->
-    <div id="update-badge" class="update-badge">UPDATE #13</div>
+    <div id="update-badge" class="update-badge">UPDATE #14</div>
 
     <!-- Custom Magnetic Cursor -->
     <div id="custom-cursor" class="custom-cursor">
@@ -55,7 +55,19 @@
     </header>
 
     <!-- SVG Threshold Filter for Gooey Text Morphing Animation -->
-    <svg class="svg-filter-defs" aria-hidden="true" focusable="false" style="position: absolute; width: 0; height: 0; pointer-events: none; overflow: hidden;"></svg>
+    <svg class="svg-filter-defs" aria-hidden="true" focusable="false" style="position: absolute; width: 0; height: 0; pointer-events: none; overflow: hidden;">
+      <defs>
+        <filter id="threshold">
+          <feColorMatrix 
+            in="SourceGraphic" 
+            type="matrix" 
+            values="1 0 0 0 0 
+                    0 1 0 0 0 
+                    0 0 1 0 0 
+                    0 0 0 255 -140" />
+        </filter>
+      </defs>
+    </svg>
 
     <!-- Full-Page Fixed Video Background (Parallax) -->
     <div class="global-video-bg" aria-hidden="true">

@@ -247,11 +247,16 @@ if (cyclingContainer) {
     nextTextEl.textContent = texts[nextIndex];
     const nextWidth = nextTextEl.offsetWidth;
 
+    // Apply the gooey SVG filter ONLY during the animation to preserve crisp vector anti-aliasing when resting
+    gsap.set(cyclingContainer, { filter: 'url(#threshold)', webkitFilter: 'url(#threshold)' });
+
     const tl = gsap.timeline({
       onComplete: () => {
         currentTextEl.textContent = texts[nextIndex];
         gsap.set(currentTextEl, { opacity: 1, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
         gsap.set(nextTextEl, { opacity: 0, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
+        // Remove the filter so the static text regains full subpixel anti-aliasing
+        gsap.set(cyclingContainer, { filter: 'none', webkitFilter: 'none' });
         currentIndex = nextIndex;
         setTimeout(morphNext, 2500);
       }

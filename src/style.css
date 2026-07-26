@@ -495,8 +495,6 @@ body.hovering-card .cursor-badge {
   vertical-align: baseline;
   overflow: visible;
   padding: 0 10px;
-  filter: url(#threshold);
-  -webkit-filter: url(#threshold);
 }
 
 .cycling-word-container::after {

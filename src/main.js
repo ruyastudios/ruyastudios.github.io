@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
 import lottie from 'lottie-web';
+import Typed from 'typed.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,9 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
+/* ==========================================================================
+   2. Interactive Elements (Buttons, Scroll Indicators & Custom Cursor)
+   ========================================================================== */
 const heroCtaBtn = document.querySelector('.hero-cta');
 if (heroCtaBtn) {
   heroCtaBtn.addEventListener('click', (e) => {
@@ -33,68 +37,55 @@ if (heroCtaBtn) {
   });
 }
 
-/* Inline SVG Logos for Theme Color Inheritance (fill="currentColor") */
+// Convert SVG images into inline SVG elements dynamically to support theme variable colors
 document.querySelectorAll('img.header-logo-img, img.hero-center-logo, img.footer-logo-img, img.about-logo-inline').forEach(async (img) => {
   try {
-    const res = await fetch(img.src);
-    const svgText = await res.text();
+    const response = await fetch(img.src);
+    const svgText = await response.text();
     const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(svgText, 'image/svg+xml');
-    const svgEl = xmlDoc.querySelector('svg');
-    if (svgEl) {
-      if (img.id) svgEl.id = img.id;
-      svgEl.classList.value = img.classList.value;
-      svgEl.style.cssText = img.style.cssText;
-      svgEl.style.color = 'var(--ink)';
-      svgEl.setAttribute('aria-label', img.alt || 'Ruya Logo');
-      img.replaceWith(svgEl);
+    const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+    const svgElement = svgDoc.querySelector('svg');
+    if (svgElement) {
+      if (img.id) svgElement.id = img.id;
+      svgElement.classList.value = img.classList.value;
+      svgElement.style.cssText = img.style.cssText;
+      svgElement.style.color = 'var(--ink)';
+      svgElement.setAttribute('aria-label', img.alt || 'Ruya Logo');
+      img.replaceWith(svgElement);
     }
   } catch (e) {
-    // Fallback to img tag if fetch fails
+    // Fallback gracefully to original img
   }
 });
+
+// Custom Magnetic Cursor Logic
 const cursor = document.getElementById('custom-cursor');
 const cursorDot = cursor?.querySelector('.cursor-dot');
-let mouseX = 0;
-let mouseY = 0;
+let mouseX = 0, mouseY = 0;
 
 window.addEventListener('mousemove', (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
 
-const quickX = gsap.quickTo(cursor, 'x', { duration: 0.35, ease: 'power3.out' });
-const quickY = gsap.quickTo(cursor, 'y', { duration: 0.35, ease: 'power3.out' });
+const xTo = gsap.quickTo(cursor, "x", { duration: 0.35, ease: "power3.out" });
+const yTo = gsap.quickTo(cursor, "y", { duration: 0.35, ease: "power3.out" });
 
 gsap.ticker.add(() => {
-  quickX(mouseX);
-  quickY(mouseY);
+  xTo(mouseX);
+  yTo(mouseY);
 });
 
-const interactives = document.querySelectorAll('a, button, select, textarea, input, .service-card, .portfolio-item');
-interactives.forEach((el) => {
+document.querySelectorAll('a, button, select, textarea, input, .service-card, .portfolio-item').forEach((el) => {
   el.addEventListener('mouseenter', () => {
-    if (cursorDot) {
-      gsap.to(cursorDot, {
-        scale: 1.8,
-        backgroundColor: '#291C0E',
-        duration: 0.2,
-      });
-    }
+    if (cursorDot) gsap.to(cursorDot, { scale: 1.8, backgroundColor: '#291C0E', duration: 0.2 });
   });
   el.addEventListener('mouseleave', () => {
-    if (cursorDot) {
-      gsap.to(cursorDot, {
-        scale: 1,
-        backgroundColor: '#291C0E',
-        duration: 0.2,
-      });
-    }
+    if (cursorDot) gsap.to(cursorDot, { scale: 1, backgroundColor: '#291C0E', duration: 0.2 });
   });
 });
 
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach((card) => {
+document.querySelectorAll('.project-card').forEach((card) => {
   card.addEventListener('mouseenter', () => {
     document.body.classList.add('hovering-card');
   });
@@ -104,17 +95,17 @@ projectCards.forEach((card) => {
 });
 
 /* ==========================================================================
-   3. Hero Ambient Background Canvas Animation (V2.md #1 Spec)
+   3. Ambient Floating Node Canvas System (Generative Grid Effect)
    ========================================================================== */
-const initAmbientCanvas = (canvasId, withSnippets = false) => {
+const initAmbientCanvas = (canvasId, isHero = false) => {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let width, height;
   let nodes = [];
-  let floatingTexts = [];
+  let codeSnippets = [];
 
-  const resizeCanvas = () => {
+  const resize = () => {
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
     width = rect.width;
@@ -124,7 +115,7 @@ const initAmbientCanvas = (canvasId, withSnippets = false) => {
     ctx.scale(dpr, dpr);
 
     nodes = [];
-    const count = Math.floor(width / (withSnippets ? 70 : 100)); // less dense if no snippets
+    const count = Math.floor(width / (isHero ? 70 : 100));
     for (let i = 0; i < count; i++) {
       nodes.push({
         x: Math.random() * width,
@@ -135,9 +126,9 @@ const initAmbientCanvas = (canvasId, withSnippets = false) => {
       });
     }
 
-    floatingTexts = [];
-    if (withSnippets) {
-      const codeSnippets = [
+    codeSnippets = [];
+    if (isHero) {
+      const snippets = [
         'const ruya = build();',
         'stroke: #291C0E;',
         '<RuyaStudio />',
@@ -147,38 +138,37 @@ const initAmbientCanvas = (canvasId, withSnippets = false) => {
         'render(experience);'
       ];
       for (let i = 0; i < 5; i++) {
-        floatingTexts.push({
-          text: codeSnippets[i % codeSnippets.length],
+        codeSnippets.push({
+          text: snippets[i % snippets.length],
           x: Math.random() * (width - 150),
           y: Math.random() * (height - 100),
           vy: -0.2 - Math.random() * 0.3,
-          opacity: 0.18 + Math.random() * 0.15,
+          opacity: 0.18 + Math.random() * 0.15
         });
       }
     }
   };
 
-  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('resize', resize);
   window.addEventListener('load', () => {
-    resizeCanvas();
-    // Advance background video slightly so it acts as a poster frame if autoplay is blocked (e.g. iOS Low Power Mode)
+    resize();
     const vid = document.querySelector('.video-texture-player');
     if (vid) vid.currentTime = 0.1;
   });
-  resizeCanvas();
+  resize();
 
   const renderBackground = () => {
     ctx.clearRect(0, 0, width, height);
 
-    if (withSnippets) {
+    if (isHero) {
       ctx.font = '12px "Fraunces", serif';
-      floatingTexts.forEach((ft) => {
-        ctx.fillStyle = `rgba(41, 28, 14, ${ft.opacity})`;
-        ctx.fillText(ft.text, ft.x, ft.y);
-        ft.y += ft.vy;
-        if (ft.y < -20) {
-          ft.y = height + 20;
-          ft.x = Math.random() * (width - 150);
+      codeSnippets.forEach((snippet) => {
+        ctx.fillStyle = `rgba(41, 28, 14, ${snippet.opacity})`;
+        ctx.fillText(snippet.text, snippet.x, snippet.y);
+        snippet.y += snippet.vy;
+        if (snippet.y < -20) {
+          snippet.y = height + 20;
+          snippet.x = Math.random() * (width - 150);
         }
       });
     }
@@ -222,71 +212,84 @@ initAmbientCanvas('hero-bg-canvas', true);
 initAmbientCanvas('about-bg-canvas', false);
 
 /* ==========================================================================
-   4. Hero Gooey Text Morphing Engine (GSAP Timeline)
+   4. Hero Gooey Text Morphing Engine (GSAP Timeline) / Typed.js Mobile
    ========================================================================== */
 const cyclingContainer = document.querySelector('.cycling-word-container');
 if (cyclingContainer) {
   const texts = ["Brands", "Logos", "Websites", "Software", "Designs"];
-  let currentIndex = 0;
-
-  // Setup DOM elements
   const currentTextEl = cyclingContainer.querySelector('.cycling-word');
-  currentTextEl.textContent = texts[currentIndex];
-  
-  // Initialize width dynamically
-  document.fonts.ready.then(() => {
-    gsap.set(cyclingContainer, { width: 'auto' });
-  });
-  
-  const nextTextEl = document.createElement('span');
-  nextTextEl.className = 'cycling-word';
-  nextTextEl.style.position = 'absolute';
-  nextTextEl.style.left = '50%';
-  nextTextEl.style.transform = 'translateX(-50%)';
-  nextTextEl.style.whiteSpace = 'nowrap';
-  nextTextEl.style.opacity = '0';
-  cyclingContainer.appendChild(nextTextEl);
+  const isMobile = window.matchMedia('(max-width: 680px)').matches;
 
-  function morphNext() {
-    const nextIndex = (currentIndex + 1) % texts.length;
-    nextTextEl.textContent = texts[nextIndex];
-    const nextWidth = nextTextEl.offsetWidth;
+  if (isMobile) {
+    new Typed(currentTextEl, {
+      strings: texts,
+      typeSpeed: 80,
+      backSpeed: 40,
+      backDelay: 2000,
+      startDelay: 500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|'
+    });
+  } else {
+    let currentIndex = 0;
+    currentTextEl.textContent = texts[currentIndex];
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        currentTextEl.textContent = texts[nextIndex];
-        gsap.set(currentTextEl, { opacity: 1, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
-        gsap.set(nextTextEl, { opacity: 0, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
-        currentIndex = nextIndex;
-        setTimeout(morphNext, 2500);
-      }
+    // Initialize width dynamically
+    document.fonts.ready.then(() => {
+      gsap.set(cyclingContainer, { width: 'auto' });
     });
 
-    // Resize the selection box to match the incoming word so it never overflows/underfills
-    tl.fromTo(cyclingContainer, 
-      { width: currentTextEl.offsetWidth },
-      { width: nextWidth, duration: 0.95, ease: 'power2.inOut' },
-      0
-    );
+    const nextTextEl = document.createElement('span');
+    nextTextEl.className = 'cycling-word';
+    nextTextEl.style.position = 'absolute';
+    nextTextEl.style.left = '50%';
+    nextTextEl.style.transform = 'translateX(-50%)';
+    nextTextEl.style.whiteSpace = 'nowrap';
+    nextTextEl.style.opacity = '0';
+    cyclingContainer.appendChild(nextTextEl);
 
-    // Smoothly transition overlapping blurred text under SVG threshold matrix for liquid morph
-    tl.to(currentTextEl, {
-      opacity: 0,
-      filter: 'blur(14px)',
-      webkitFilter: 'blur(14px)',
-      duration: 0.95,
-      ease: 'power2.inOut'
-    }, 0);
+    function morphNext() {
+      const nextIndex = (currentIndex + 1) % texts.length;
+      nextTextEl.textContent = texts[nextIndex];
+      const nextWidth = nextTextEl.offsetWidth;
 
-    tl.fromTo(nextTextEl, 
-      { opacity: 0, filter: 'blur(14px)', webkitFilter: 'blur(14px)', y: 0 },
-      { opacity: 1, filter: 'blur(0px)', webkitFilter: 'blur(0px)', y: 0, duration: 0.95, ease: 'power2.inOut' },
-      0
-    );
+      const tl = gsap.timeline({
+        onComplete: () => {
+          currentTextEl.textContent = texts[nextIndex];
+          gsap.set(currentTextEl, { opacity: 1, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
+          gsap.set(nextTextEl, { opacity: 0, y: 0, filter: 'blur(0px)', webkitFilter: 'blur(0px)' });
+          currentIndex = nextIndex;
+          setTimeout(morphNext, 2500);
+        }
+      });
+
+      // Resize the selection box to match the incoming word so it never overflows/underfills
+      tl.fromTo(cyclingContainer, 
+        { width: currentTextEl.offsetWidth },
+        { width: nextWidth, duration: 0.95, ease: 'power2.inOut' },
+        0
+      );
+
+      // Smoothly transition overlapping blurred text under SVG threshold matrix for liquid morph
+      tl.to(currentTextEl, {
+        opacity: 0,
+        filter: 'blur(14px)',
+        webkitFilter: 'blur(14px)',
+        duration: 0.95,
+        ease: 'power2.inOut'
+      }, 0);
+
+      tl.fromTo(nextTextEl, 
+        { opacity: 0, filter: 'blur(14px)', webkitFilter: 'blur(14px)', y: 0 },
+        { opacity: 1, filter: 'blur(0px)', webkitFilter: 'blur(0px)', y: 0, duration: 0.95, ease: 'power2.inOut' },
+        0
+      );
+    }
+
+    // Start loop
+    setTimeout(morphNext, 2500);
   }
-
-  // Start loop
-  setTimeout(morphNext, 2500);
 }
 
 /* ==========================================================================

@@ -580,8 +580,14 @@ body.hovering-card .cursor-badge {
     height: 1em;
     line-height: 1;
     width: auto;
-    min-width: 130px;
+    min-width: 20px;
     max-width: 82vw;
+  }
+
+  .cycling-word {
+    position: static;
+    left: auto;
+    transform: none;
   }
 
   .hero-subhead {
@@ -590,6 +596,23 @@ body.hovering-card .cursor-badge {
     max-width: 88vw;
     margin: 0.85rem auto 1.75rem;
   }
+}
+
+.typed-cursor {
+  color: inherit !important;
+  vertical-align: baseline !important;
+  display: inline !important;
+  margin-left: 2px !important;
+  animation: typedjsBlink 1s infinite !important;
+}
+
+@keyframes typedjsBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@media (min-width: 681px) {
+  .typed-cursor { display: none !important; }
 }
 
 .cycling-word {

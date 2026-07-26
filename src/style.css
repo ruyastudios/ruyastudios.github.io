@@ -513,7 +513,7 @@ body.hovering-card .cursor-badge {
     margin-bottom: 0.25rem;
   }
   .hero-center-logo {
-    height: 0.65em;
+    height: clamp(22px, 5.5vw, 34px);
   }
   .hero-headline {
     display: flex;

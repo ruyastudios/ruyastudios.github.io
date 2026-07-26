@@ -542,6 +542,13 @@ body.hovering-card .cursor-badge {
   animation: bounce 2.2s infinite ease-in-out;
 }
 
+.hero-subhead {
+  max-width: 650px;
+  margin: 1.5rem auto 2.5rem;
+  font-size: 1.15rem;
+  color: var(--ink-muted);
+}
+
 .hero-cta {
   display: inline-flex;
   align-items: center;

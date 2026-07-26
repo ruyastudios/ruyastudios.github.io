@@ -159,6 +159,12 @@ const initAmbientCanvas = (canvasId, withSnippets = false) => {
   };
 
   window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('load', () => {
+    resizeCanvas();
+    // Advance background video slightly so it acts as a poster frame if autoplay is blocked (e.g. iOS Low Power Mode)
+    const vid = document.querySelector('.video-texture-player');
+    if (vid) vid.currentTime = 0.1;
+  });
   resizeCanvas();
 
   const renderBackground = () => {

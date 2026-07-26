@@ -231,7 +231,7 @@ body.hovering-card .cursor-badge {
   pointer-events: none;
   z-index: 0; /* Above body background, below scroll content */
   mix-blend-mode: multiply;
-  opacity: 0.25; /* Blends the video into the cream body so it's not a harsh contrast */
+  opacity: 0.12; /* Blends the video into the cream body so it's not a harsh contrast */
 }
 
 #scroll-content {
@@ -484,7 +484,6 @@ body.hovering-card .cursor-badge {
   max-width: 42vw;
   text-align: center;
   vertical-align: baseline;
-  height: 1.15em;
   overflow: visible;
   padding: 0 10px;
   filter: url(#threshold);
@@ -873,17 +872,12 @@ svg.about-logo-inline {
 .marker-highlight::before, .text-highlight-marker::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -4px;
-  width: 108%;
-  height: 80%;
-  background-color: rgba(220, 160, 130, 0.4); /* soft warm ochre tint */
+  inset: 0 -4px;
+  background-color: var(--ink-muted);
+  opacity: 0.15;
   z-index: -1;
   transform: rotate(-2deg);
   border-radius: 2px;
-  mix-blend-mode: multiply;
-  right: -4px;
-  bottom: 0;
 }
 
 .services-rule-cta {

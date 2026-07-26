@@ -34,7 +34,7 @@ if (heroCtaBtn) {
 }
 
 /* Inline SVG Logos for Theme Color Inheritance (fill="currentColor") */
-document.querySelectorAll('img[src*="Ruya Logo.svg"]').forEach(async (img) => {
+document.querySelectorAll('img.header-logo-img, img.hero-center-logo, img.footer-logo-img, img.about-logo-inline').forEach(async (img) => {
   try {
     const res = await fetch(img.src);
     const svgText = await res.text();

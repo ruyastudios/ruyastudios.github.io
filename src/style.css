@@ -524,6 +524,7 @@ body.hovering-card .cursor-badge {
 .cycling-word {
   position: absolute;
   left: 50%;
+  transform: translateX(-50%);
   display: inline-block;
   vertical-align: baseline;
   font-family: var(--font-serif);

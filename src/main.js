@@ -238,7 +238,6 @@ if (cyclingContainer) {
   nextTextEl.style.left = '50%';
   nextTextEl.style.transform = 'translateX(-50%)';
   nextTextEl.style.whiteSpace = 'nowrap';
-  nextTextEl.style.bottom = '0';
   nextTextEl.style.opacity = '0';
   cyclingContainer.appendChild(nextTextEl);
 

@@ -25,7 +25,7 @@
   <body>
 
     <!-- Live Update Version Badge -->
-    <div id="update-badge" class="update-badge">UPDATE #9</div>
+    <div id="update-badge" class="update-badge">UPDATE #10</div>
 
     <!-- Custom Magnetic Cursor -->
     <div id="custom-cursor" class="custom-cursor">
@@ -64,7 +64,8 @@
             values="1 0 0 0 0 
                     0 1 0 0 0 
                     0 0 1 0 0 
-                    0 0 0 255 -140" />
+                    0 0 0 255 -140" result="matrixOut" />
+          <feGaussianBlur in="matrixOut" stdDeviation="0.75" />
         </filter>
       </defs>
     </svg>

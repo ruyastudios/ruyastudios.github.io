@@ -879,7 +879,7 @@ const projectData = {
     overview: "Araknid is an experimental visual programming interface built as an alternative to conventional, text-based code editors. Instead of typing syntax, it lets developers construct programs through a spatial, interaction-driven canvas — exploring how visual thinking can stand alongside, or in place of, traditional code.",
     approach: "Combined system design with creative interface exploration, running rapid prototyping cycles across several interaction paradigms — node-based canvases, gesture-driven blocks, and live-preview panels — before converging on the current model.",
     outcome: "A working prototype that demonstrates a genuinely alternative developer experience, used as a personal proof of concept for non-traditional programming interfaces.",
-    images: ["/works/Araknid/a1.png", "/works/Araknid/a3.png", "/works/Araknid/a4.gif"]
+    images: ["./works/Araknid/a1.png", "./works/Araknid/a3.png", "./works/Araknid/a4.gif"]
   },
   "seven-years": {
     title: "Seven Years",
@@ -888,7 +888,7 @@ const projectData = {
     overview: "A series of social-first creative for Seven Years Baby Shop (Vadakara, Perambra), a baby and kids retail store. The campaign spans seasonal promotions, emotional brand storytelling, and product-led placement, all built for Instagram-first distribution.",
     approach: "Each piece is anchored on a single emotional hook and paired with bold typography and photo or illustration composites, built for quick, scroll-stopping impact in a social feed.",
     outcome: "A cohesive visual campaign covering a Back-to-School seasonal push, a Social Media Day piece, and an evergreen brand piece built around \"make every moment count,\" all published under the shop's Instagram handle.",
-    images: ["/works/Seven%20Years/1.jpg", "/works/Seven%20Years/2.jpg", "/works/Seven%20Years/3.jpg", "/works/Seven%20Years/4.jpg"]
+    images: ["./works/Seven%20Years/1.jpg", "./works/Seven%20Years/2.jpg", "./works/Seven%20Years/3.jpg", "./works/Seven%20Years/4.jpg"]
   },
   "behavioral-auth": {
     title: "Behavioral Biometric Auth",
@@ -897,7 +897,7 @@ const projectData = {
     overview: "A behavioral biometric authentication system built around cognitive mapping — authenticating users based on patterns in how they think and interact, rather than static credentials. Developed as a final-year academic collaboration.",
     approach: "Combined behavioral pattern capture with a cognitive-mapping model to produce an authentication signal that's harder to spoof than a password or a static biometric.",
     outcome: "A working academic prototype demonstrating an alternative authentication approach, delivered with full technical documentation and a project presentation.",
-    images: ["/works/Behavioral%20Biometric%20Auth/1.png", "/works/Behavioral%20Biometric%20Auth/2.png", "/works/Behavioral%20Biometric%20Auth/3.png", "/works/Behavioral%20Biometric%20Auth/4.png"]
+    images: ["./works/Behavioral%20Biometric%20Auth/1.png", "./works/Behavioral%20Biometric%20Auth/2.png", "./works/Behavioral%20Biometric%20Auth/3.png", "./works/Behavioral%20Biometric%20Auth/4.png"]
   },
   "rayyan-international": {
     title: "Rayyan International",
@@ -906,7 +906,7 @@ const projectData = {
     overview: "A corporate identity project for Rayyan International, centered on a geometric \"R\" monogram mark.",
     approach: "The monogram is built from interlocking negative space so the \"R\" reads clearly at both icon and word-mark scale, paired with a clean serif \"INTERNATIONAL\" lockup for a formal, corporate register.",
     outcome: "A primary logo mark delivered for use across brand touchpoints and backgrounds.",
-    images: ["/works/Logos/1.jpg", "/works/Logos/2.jpg", "/works/Logos/3.jpg", "/works/Logos/4.jpg"]
+    images: ["./works/Logos/1.jpg", "./works/Logos/2.jpg", "./works/Logos/3.jpg", "./works/Logos/4.jpg"]
   },
   "mercury": {
     title: "Mercury",
@@ -916,10 +916,10 @@ const projectData = {
     approach: "Designed a distributed message-routing model in place of a single centralized server, and prototyped real-world use cases to test the model's scalability and communication patterns.",
     outcome: "An architectural prototype and use-case set demonstrating the decentralized messaging model.",
     images: [
-      "/works/Mercury/Screenshot%202026-03-17%20013753.png",
-      "/works/Mercury/Screenshot%202026-03-31%20115438.png",
-      "/works/Mercury/Screenshot%202026-03-31%20115506.png",
-      "/works/Mercury/Screenshot%202026-03-31%20144619.png"
+      "./works/Mercury/Screenshot%202026-03-17%20013753.png",
+      "./works/Mercury/Screenshot%202026-03-31%20115438.png",
+      "./works/Mercury/Screenshot%202026-03-31%20115506.png",
+      "./works/Mercury/Screenshot%202026-03-31%20144619.png"
     ]
   },
   "branding-and-logos": {
@@ -929,16 +929,14 @@ const projectData = {
     overview: "A dual corporate identity suite crafted for Rayyan International and Crescent Italy. This collection explores vector precision, negative space balance, and distinct brand positioning tailored for modern international commerce and regional retail identity.",
     approach: "For Rayyan International, developed a geometric 'R' monogram constructed from interlocking negative space to embody structure and corporate authority. For Crescent Italy, authored a dynamic crescent motif paired with high-contrast typography, evoking fluid motion and contemporary Italian elegance.",
     outcome: "Delivered primary logo marks, brand identity guidelines, and scalable vector suites optimized across digital applications, stationery, and physical touchpoints.",
-    images: ["/works/Logos/1.jpg", "/works/Logos/2.jpg", "/works/Logos/3.jpg", "/works/Logos/4.jpg"]
-  },
-  "lysis-grafx": {
+    images: ["./works/Logos/1.jpg", "./works/Logos/2.jpg", "./works/Logos/3.jpg", "./works/Logos/4.jpg"]
     title: "Lysis Grafx",
     role: "Designer",
     year: "2026",
     overview: "A series of stylized football fan-art and tribute posters published under the \"Lysis Grafx\" name, blending photo composition with bold typographic treatments.",
     approach: "Photo manipulation and compositing paired with dramatic typographic treatment, built for square and portrait social formats.",
     outcome: "A growing catalogue of tribute and hype posters distributed on social media.",
-    images: ["/works/Lysis%20Grafx/1.jpg", "/works/Lysis%20Grafx/2.jpg", "/works/Lysis%20Grafx/3.jpg", "/works/Lysis%20Grafx/4.jpg"]
+    images: ["./works/Lysis%20Grafx/1.jpg", "./works/Lysis%20Grafx/2.jpg", "./works/Lysis%20Grafx/3.jpg", "./works/Lysis%20Grafx/4.jpg"]
   },
   "client-web-platforms": {
     title: "Client Web Platforms",
@@ -947,7 +945,7 @@ const projectData = {
     overview: "Freelance software development work delivered for international clients across Saudi Arabia and Egypt, spanning full web platforms built to support live business operations.",
     approach: "Requirement analysis, architecture, and build aligned to each client's real operational workflows, with automation layered in to cut down manual effort.",
     outcome: "Multiple production platforms launched and in active use for client operations, spanning 3+ years of freelance engagements.",
-    images: ["/works/Client%20Web%20Platforms/1.png", "/works/Client%20Web%20Platforms/2.png", "/works/Client%20Web%20Platforms/3.png", "/works/Client%20Web%20Platforms/4.png"]
+    images: ["./works/Client%20Web%20Platforms/1.png", "./works/Client%20Web%20Platforms/2.png", "./works/Client%20Web%20Platforms/3.png", "./works/Client%20Web%20Platforms/4.png"]
   }
 };
 

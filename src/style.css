@@ -497,8 +497,28 @@ body.hovering-card .cursor-badge {
   vertical-align: baseline;
   overflow: visible;
   padding: 0 10px;
+  /* The GSAP morph loop sets `width` directly to the incoming word's
+     text-only offsetWidth (see main.js). Since the global reset makes
+     every element border-box by default, that width would otherwise
+     have to *include* this element's own 20px of padding — shrinking
+     the actual text area and making the word spill outside the
+     selection box border. Forcing content-box here means the width
+     GSAP sets is exactly the text width, and the padding is added on
+     top of that, so the box always hugs the word correctly. */
+  box-sizing: content-box;
   filter: url(#threshold);
   -webkit-filter: url(#threshold);
+}
+
+/* WebKit (desktop Safari + every browser on iOS/iPadOS) can't composite
+   the feColorMatrix alpha-threshold trick this filter relies on — it just
+   renders as a stuck blur instead of resolving to sharp text. main.js
+   detects WebKit and adds this class to <html>, so we turn the filter off
+   there entirely; the morph loop also skips the blur itself in that case,
+   so the word cycles with a plain, clean crossfade instead. */
+.is-webkit-goo-fallback .cycling-word-container {
+  filter: none;
+  -webkit-filter: none;
 }
 
 .cycling-word-container::after {
@@ -633,16 +653,23 @@ body.hovering-card .cursor-badge {
 .hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 1.6rem;
+  gap: clamp(0.4rem, 0.3rem + 0.5vw, 0.6rem);
+  padding: clamp(0.6rem, 0.4rem + 1vw, 0.85rem) clamp(1.1rem, 0.7rem + 2vw, 1.6rem);
   border: 1px solid var(--ink);
   border-radius: var(--radius-btn, 50px);
   font-family: var(--font-heading);
+  font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem);
   font-weight: 700;
   background-color: transparent;
   color: var(--ink);
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.hero-cta svg {
+  width: clamp(14px, 11px + 1vw, 18px);
+  height: clamp(14px, 11px + 1vw, 18px);
+  flex-shrink: 0;
 }
 
 .hero-cta:hover {
@@ -1299,11 +1326,11 @@ svg.about-logo-inline {
 .btn-pill-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: clamp(0.85rem, 0.75rem + 0.5vw, 1.05rem);
   font-weight: 750;
-  padding: 1.1rem 2.6rem;
+  padding: clamp(0.75rem, 0.5rem + 1.25vw, 1.1rem) clamp(1.5rem, 0.9rem + 3vw, 2.6rem);
   border-radius: var(--radius-pill);
   border: 1px solid var(--ink);
   background-color: var(--ink);
@@ -1443,14 +1470,14 @@ dialog::backdrop {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem 1.5rem;
+  gap: clamp(0.4rem, 0.3rem + 0.5vw, 0.6rem);
+  padding: clamp(0.8rem, 0.65rem + 0.75vw, 1rem) clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
   border-radius: var(--radius-btn);
   border: 1px solid var(--border-strong);
   background-color: var(--bg-card);
   color: var(--ink);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 0.8rem + 0.25vw, 0.95rem);
   transition: all 0.3s var(--ease-out-expo);
   text-decoration: none;
 }

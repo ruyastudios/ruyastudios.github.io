@@ -9,6 +9,28 @@ import Typed from 'typed.js';
 gsap.registerPlugin(ScrollTrigger);
 
 /* ==========================================================================
+   0. WebKit / iPhone Detection for Gooey Filter Fallback
+   --------------------------------------------------------------------------
+   The "gooey" morph effect relies on an SVG feColorMatrix alpha-threshold
+   trick (see the #threshold filter in index.html) that snaps blurred,
+   semi-transparent pixels back to fully opaque/transparent, making two
+   blurred words visually "merge" into one another. This alpha-matrix trick
+   is a long-standing WebKit limitation (WebKit bug 184601, and confirmed by
+   every current gooey-filter writeup): Safari does not composite it, so it
+   just falls back to a permanently blurred smear instead of resolving to
+   sharp text. Because Apple requires every browser on iOS/iPadOS to use the
+   WebKit engine under the hood (Chrome, Firefox, Edge on iPhone are all
+   WebKit in disguise), this affects "every iPhone browser", not just Safari
+   itself. The standard, widely-used fix is to feature/browser-detect WebKit
+   and swap the filter for a plain opacity crossfade there instead of trying
+   to force an effect the engine can't render.
+   ========================================================================== */
+const isWebKitGooeyFallback = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isWebKitGooeyFallback) {
+  document.documentElement.classList.add('is-webkit-goo-fallback');
+}
+
+/* ==========================================================================
    1. Smooth Scroll Setup (Lenis + GSAP ScrollTrigger Integration)
    ========================================================================== */
 const lenis = new Lenis({
@@ -271,17 +293,24 @@ if (cyclingContainer) {
         0
       );
 
+      // On WebKit (Safari + every iPhone/iPad browser) the SVG threshold
+      // filter can't snap the blur back to sharp text, so heavy blur just
+      // reads as a smeared glitch. Skip the blur there and do a clean
+      // opacity crossfade instead; Blink/Gecko desktop browsers keep the
+      // full blurred "gooey" merge.
+      const blurAmount = isWebKitGooeyFallback ? 0 : 14;
+
       // Smoothly transition overlapping blurred text under SVG threshold matrix for liquid morph
       tl.to(currentTextEl, {
         opacity: 0,
-        filter: 'blur(14px)',
-        webkitFilter: 'blur(14px)',
+        filter: `blur(${blurAmount}px)`,
+        webkitFilter: `blur(${blurAmount}px)`,
         duration: 0.95,
         ease: 'power2.inOut'
       }, 0);
 
       tl.fromTo(nextTextEl, 
-        { opacity: 0, filter: 'blur(14px)', webkitFilter: 'blur(14px)', y: 0 },
+        { opacity: 0, filter: `blur(${blurAmount}px)`, webkitFilter: `blur(${blurAmount}px)`, y: 0 },
         { opacity: 1, filter: 'blur(0px)', webkitFilter: 'blur(0px)', y: 0, duration: 0.95, ease: 'power2.inOut' },
         0
       );

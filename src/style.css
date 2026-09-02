@@ -631,6 +631,8 @@ body.hovering-card .cursor-badge {
   51%, 100% { opacity: 0; }
 }
 
+.typed-cursor { display: none !important; }
+
 @media (min-width: 681px) {
   .typed-cursor { display: none !important; }
 }

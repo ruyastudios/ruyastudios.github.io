@@ -250,8 +250,13 @@ if (cyclingContainer) {
       backDelay: 2000,
       startDelay: 500,
       loop: true,
-      showCursor: true,
-      cursorChar: '|'
+      showCursor: false,
+      onComplete: () => {
+        gsap.to(cyclingContainer, { width: currentTextEl.offsetWidth, duration: 0.3, ease: 'power2.inOut' });
+      },
+      preStringTyped: () => {
+        gsap.to(cyclingContainer, { width: currentTextEl.offsetWidth, duration: 0.3, ease: 'power2.inOut' });
+      }
     });
   } else {
     let currentIndex = 0;

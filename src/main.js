@@ -930,6 +930,8 @@ const projectData = {
     approach: "For Rayyan International, developed a geometric 'R' monogram constructed from interlocking negative space to embody structure and corporate authority. For Crescent Italy, authored a dynamic crescent motif paired with high-contrast typography, evoking fluid motion and contemporary Italian elegance.",
     outcome: "Delivered primary logo marks, brand identity guidelines, and scalable vector suites optimized across digital applications, stationery, and physical touchpoints.",
     images: ["./works/Logos/1.jpg", "./works/Logos/2.jpg", "./works/Logos/3.jpg", "./works/Logos/4.jpg"]
+  },
+  "lysis-grafx": {
     title: "Lysis Grafx",
     role: "Designer",
     year: "2026",

@@ -243,6 +243,15 @@ if (cyclingContainer) {
   const isMobile = window.matchMedia('(max-width: 680px)').matches;
 
   if (isMobile) {
+    // Set initial container width
+    gsap.set(cyclingContainer, { width: texts[0].length > 0 ? 'auto' : 'fit-content' });
+
+    // Use ResizeObserver to track text width changes in real-time as it's being typed
+    const resizeObserver = new ResizeObserver(() => {
+      gsap.to(cyclingContainer, { width: currentTextEl.offsetWidth, duration: 0.15, ease: 'power2.out' });
+    });
+    resizeObserver.observe(currentTextEl);
+
     new Typed(currentTextEl, {
       strings: texts,
       typeSpeed: 80,
@@ -250,13 +259,7 @@ if (cyclingContainer) {
       backDelay: 2000,
       startDelay: 500,
       loop: true,
-      showCursor: false,
-      onComplete: () => {
-        gsap.to(cyclingContainer, { width: currentTextEl.offsetWidth, duration: 0.3, ease: 'power2.inOut' });
-      },
-      preStringTyped: () => {
-        gsap.to(cyclingContainer, { width: currentTextEl.offsetWidth, duration: 0.3, ease: 'power2.inOut' });
-      }
+      showCursor: false
     });
   } else {
     let currentIndex = 0;

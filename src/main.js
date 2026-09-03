@@ -8,6 +8,9 @@ import Typed from 'typed.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Log version update to console
+console.log('%cRuya Studios %cUPDATE #31', 'color: #291C0E; font-weight: bold; font-size: 16px;', 'color: #6E473B; font-weight: bold; font-size: 14px;');
+
 /* ==========================================================================
    0. WebKit / iPhone Detection for Gooey Filter Fallback
    --------------------------------------------------------------------------

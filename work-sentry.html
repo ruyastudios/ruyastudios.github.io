@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentry — Ruya Studios</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --paper:#f5f4ef;
+  --ink:#11110f;
+  --line:rgba(17,17,15,.25);
+  --soft:rgba(17,17,15,.12);
+  --muted:rgba(17,17,15,.62);
+  --serif:"Fraunces", Georgia, serif;
+  --mono:"JetBrains Mono", ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:var(--mono);overflow-x:hidden}
+a{color:inherit}
+button{font:inherit}
+
+/* ---------- ORIGINAL RUYA NAV ---------- */
+#sec-nav{position:sticky;top:0;z-index:100;background:rgba(245,244,239,.94);backdrop-filter:blur(10px)}
+#sec-nav .nav{height:100px;margin:0 2%;padding:20px 24px;border:1px solid var(--line);border-top:0;display:flex;align-items:center;justify-content:space-between}
+#sec-nav .logo{display:block;padding-right:34px}#sec-nav .logo img{display:block;width:auto;height:46px;object-fit:contain}
+#sec-nav .nav-links{display:flex;align-items:center;gap:42px;margin-left:38px}
+#sec-nav .nav-links a{font-size:12px;letter-spacing:.05em;text-decoration:none}
+#sec-nav .nav-links a:hover{opacity:.5}
+#sec-nav .nav-meta{margin-left:auto;display:flex;align-items:center;gap:30px}
+#sec-nav .nav-meta .divider{width:1px;height:38px;background:var(--line)}
+#sec-nav .studio-tag{font-size:11px;line-height:1.55;letter-spacing:.04em}
+#sec-nav .talk-btn{display:flex;align-items:center;gap:12px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:16px 24px;font-size:12px;letter-spacing:.04em;cursor:pointer}
+#sec-nav .talk-btn svg{width:14px;height:14px}
+#sec-nav .nav-links.mobile-open{display:flex;position:absolute;top:78px;left:3%;right:3%;padding:18px 16px;background:var(--paper);border:1px solid var(--line);border-top:0;flex-direction:column;gap:16px;z-index:20}\n#sec-nav .menu-trigger{display:none;border:0;background:none;align-items:center;gap:12px;color:var(--ink);font-size:11px;letter-spacing:.08em}
+#sec-nav .bars{display:flex;flex-direction:column;gap:5px}
+#sec-nav .bars span{width:24px;height:1px;background:var(--ink)}
+
+/* ---------- SHARED ---------- */
+.page{padding:0 2%}
+.eyebrow{display:flex;align-items:center;gap:18px;font-size:12px;letter-spacing:.05em}
+.eyebrow .rule{display:inline-block;width:70px;height:1px;background:var(--line)}
+.section-line{height:1px;background:var(--line);margin:0}
+h1,h2,h3,p{margin:0}
+
+/* ---------- WORK DETAIL ---------- */
+.work-detail{position:relative;max-width:1500px;margin:0 auto}
+.detail-hero{min-height:calc(100svh - 100px);padding:58px 3.1vw 44px;display:grid;grid-template-columns:minmax(0,.82fr) minmax(420px,1fr);gap:5vw;position:relative;overflow:hidden}
+.detail-hero::before{content:"";position:absolute;width:620px;height:620px;border:1px solid var(--soft);border-radius:50%;right:-90px;top:70px}
+.detail-hero::after{content:"";position:absolute;width:900px;height:1px;background:var(--soft);right:-140px;top:52%;transform:rotate(-17deg);transform-origin:center}
+.detail-copy{position:relative;z-index:2;padding-top:5vh}
+.detail-copy .eyebrow{margin-bottom:42px}
+.detail-copy h1{font-family:var(--serif);font-weight:600;font-size:clamp(68px,8vw,126px);line-height:.86;letter-spacing:-.055em;max-width:6.5ch}
+.detail-type{margin-top:38px;font-size:13px;line-height:1.55;letter-spacing:.08em}
+.detail-intro{margin-top:24px;max-width:38ch;font-size:14px;line-height:1.7;color:var(--muted)}
+.detail-button{display:inline-flex;align-items:center;justify-content:space-between;gap:42px;margin-top:34px;padding:18px 22px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;font-size:12px;letter-spacing:.05em}
+.detail-button span:last-child{font-size:18px;line-height:1}
+.detail-meta{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:70px;max-width:460px}
+.meta-block{padding-top:12px;border-top:1px solid var(--line)}
+.meta-label{font-size:10px;letter-spacing:.08em;color:var(--muted);margin-bottom:9px}
+.meta-value{font-size:12px;line-height:1.55}
+.detail-visual{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;min-height:650px}
+.detail-visual .media-placeholder{width:min(100%,620px);aspect-ratio:1604/980}
+.media-placeholder{position:relative;background:#171715;color:var(--paper);border:1px solid var(--ink);overflow:hidden;display:flex;align-items:center;justify-content:center}.media-placeholder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3}
+.detail-visual .media-placeholder{background:url('assets/Sentry1.png') center/cover no-repeat}.detail-media-grid .small{background:url('assets/Sentry2.png') center/cover no-repeat}.detail-media-grid .wide{background:url('assets/Sentry3.png') center/cover no-repeat}.detail-visual .media-placeholder::before,.detail-visual .media-placeholder::after,.detail-media-grid .media-placeholder::before,.detail-media-grid .media-placeholder::after,.detail-visual .media-placeholder>* ,.detail-media-grid .media-placeholder>*{display:none}
+.media-placeholder::before{content:"";position:absolute;inset:9%;border:1px solid rgba(245,244,239,.28)}
+.media-placeholder::after{content:"";position:absolute;width:58%;height:58%;border:1px solid rgba(245,244,239,.24);border-radius:50%;left:21%;top:21%}
+.media-label{position:relative;z-index:2;text-align:center;font-size:11px;line-height:1.7;letter-spacing:.1em}
+.media-label strong{display:block;font-family:var(--serif);font-size:clamp(28px,3vw,48px);line-height:1;margin-bottom:12px;letter-spacing:-.04em}
+.media-label small{font:10px/1.6 var(--mono);letter-spacing:.06em;color:rgba(245,244,239,.65)}
+.graph-mark{position:absolute;z-index:2;width:90px;height:90px;right:12%;top:13%}
+.graph-mark circle,.graph-mark path{fill:none;stroke:rgba(245,244,239,.65);stroke-width:1}
+.graph-mark path:last-child{stroke:var(--paper);stroke-width:1.5}
+
+.detail-body{border-top:1px solid var(--line);display:grid;grid-template-columns:25% 1fr;min-height:520px}
+.detail-side{padding:38px 3.1vw;border-right:1px solid var(--line)}
+.detail-side .eyebrow{margin-bottom:34px}
+.detail-side p{font-size:11px;line-height:1.7;letter-spacing:.03em;color:var(--muted)}
+.detail-content{padding:42px 4vw 70px}
+.detail-content .overview{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
+.detail-content h2{font-family:var(--serif);font-weight:500;font-size:clamp(42px,4.6vw,72px);line-height:.9;letter-spacing:-.05em}
+.detail-content .body-copy{font-size:13px;line-height:1.75;max-width:45ch;color:var(--muted)}
+.detail-media-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);column-gap:28px;row-gap:0;margin-top:70px}.detail-media-grid .wide{margin-left:0!important;width:100%!important;transform:none}
+.detail-media-grid .media-placeholder{min-height:330px}
+.detail-media-grid .wide{aspect-ratio:1/1}
+.detail-media-grid .small{aspect-ratio:1536/1024;width:100%!important}
+.detail-facts{border-top:1px solid var(--line);margin-top:70px;padding-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.detail-facts div{font-size:11px;line-height:1.6}
+.next-work{border-top:1px solid var(--line);padding:38px 3.1vw 55px;display:flex;align-items:end;justify-content:space-between;gap:30px}
+.next-work .eyebrow{margin-bottom:18px}
+.next-work h2,.next-work .next-title{font-family:var(--serif);font-size:clamp(42px,5vw,76px);font-weight:500;letter-spacing:-.05em;line-height:.9}.next-work .next-title{display:block;padding:0;border:0;text-decoration:none}
+.next-work a{border:1px solid var(--ink);padding:16px 20px;text-decoration:none;font-size:11px;white-space:nowrap}
+
+/* ---------- ALL WORKS ---------- */
+.works-page{max-width:1500px;margin:0 auto;position:relative;overflow:hidden}
+.works-hero{padding:62px 3.1vw 48px;position:relative}
+.works-hero .eyebrow{margin-bottom:34px}
+.works-hero h1{font-family:var(--serif);font-size:clamp(72px,9vw,140px);font-weight:600;line-height:.82;letter-spacing:-.065em}
+.works-hero p{max-width:36ch;margin-top:30px;font-size:13px;line-height:1.7;color:var(--muted)}
+.works-hero .orbit{position:absolute;right:3%;top:20px;width:320px;height:320px;border:1px solid var(--soft);border-radius:50%}
+.works-hero .orbit::before{content:"";position:absolute;left:50%;top:-45px;width:1px;height:410px;background:var(--soft)}
+.works-hero .orbit::after{content:"";position:absolute;left:0;top:52%;width:410px;height:1px;background:var(--soft);transform:rotate(-25deg)}
+.works-list{margin:0 3.1vw 75px;border-top:1px solid var(--line)}
+.work-row{position:relative;display:grid;grid-template-columns:72px 1.15fr .72fr 140px 34px;gap:24px;align-items:center;min-height:150px;border-bottom:1px solid var(--line);text-decoration:none;overflow:hidden}
+.work-row::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background:rgba(17,17,15,.035);transform:scaleY(0);transform-origin:bottom;transition:transform .25s ease}
+.work-row:hover::before{transform:scaleY(1)}
+.work-number,.work-service,.work-year,.work-arrow,.work-label{position:relative;z-index:2}
+.work-number{font-size:11px;display:flex;align-items:center;gap:10px}
+.work-number i{display:block;width:26px;height:1px;background:var(--line)}
+.work-label{font-size:11px;line-height:1.55;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.work-title{position:relative;z-index:2;font-family:var(--serif);font-size:clamp(32px,3.4vw,55px);font-weight:500;line-height:.9;letter-spacing:-.045em}
+.work-service{font-size:11px;line-height:1.5}
+.work-year{font-size:11px;color:var(--muted)}
+.work-arrow{font-size:20px}
+.work-header{display:grid;grid-template-columns:72px 1.15fr .72fr 140px 34px;gap:24px;padding:0 0 14px;font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.work-header span:nth-child(2){grid-column:2}
+.works-media-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 3.1vw 75px}
+.works-media-strip .media-placeholder{min-height:290px}
+.works-media-strip .media-placeholder:nth-child(2){margin-top:70px}
+.works-note{position:absolute;right:3.1vw;top:470px;width:150px;font-size:10px;line-height:1.6;color:var(--muted)}
+.works-note::before{content:"";display:block;width:22px;height:1px;background:var(--line);margin-bottom:12px}
+
+/* ---------- ORIGINAL RUYA FOOTER ---------- */
+#sec-footer{background:var(--paper);margin-top:0}
+#sec-footer .footer{overflow:hidden;position:relative;padding-top:16px;background:transparent}
+#sec-footer .shell{position:relative;width:100%;border-top:1px solid var(--line)}
+#sec-footer .main{isolation:isolate;position:relative;display:grid;grid-template-columns:20.8% 1fr 16.8%;min-height:405px}
+#sec-footer .brand{position:relative;z-index:1;padding:46px 3.2vw 30px;border-right:1px solid var(--line);display:flex;flex-direction:column}
+#sec-footer .mark{display:block;width:62px;height:62px;object-fit:contain;margin-bottom:38px}
+#sec-footer .brand-copy,#sec-footer .menu,#sec-footer .locale,#sec-footer .tagline,#sec-footer .legal,#sec-footer .bottom-nav,#sec-footer .contact-copy,#sec-footer .channel{font-size:11px;letter-spacing:.075em;line-height:1.7}
+#sec-footer .brand-copy{margin:0}
+#sec-footer .menu{list-style:none;padding:0;margin:38px 0 0}
+#sec-footer .locale{margin-top:auto}
+#sec-footer .content{position:relative;z-index:1;padding:48px 5vw;border-right:1px solid var(--line)}
+#sec-footer h1{max-width:740px;font:500 clamp(54px,5vw,92px)/.86 var(--serif);letter-spacing:-.06em}
+#sec-footer .contact-copy{max-width:475px;margin:24px 0 28px;font-size:12px;line-height:1.7}
+#sec-footer .channels{display:flex;gap:14px}
+#sec-footer .channel{min-width:0;flex:1;display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid var(--ink);color:var(--ink);background:transparent;text-decoration:none}
+#sec-footer .icon{width:19px;height:19px;font-size:19px;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+#sec-footer .arrow{margin-left:auto;font:18px/1 Arial,sans-serif}
+#sec-footer .aside{position:relative;padding:46px 3vw}
+#sec-footer .tagline{width:120px;margin:0 0 0 auto;font-size:11px;line-height:1.6}
+#sec-footer .tagline::before{content:"";display:block;width:26px;margin-bottom:20px;border-top:1px solid var(--line)}
+#sec-footer .geometry{position:absolute;z-index:0;top:112px;right:-113px;width:530px;height:400px;pointer-events:none;opacity:.35}
+#sec-footer .bottom{position:relative;min-height:82px;padding:0 3.2vw;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:2rem}
+#sec-footer .legal,#sec-footer .bottom-nav{font-size:9px;letter-spacing:.07em}
+#sec-footer .bottom-nav{display:flex;gap:14px}
+#sec-footer .bottom-nav a{text-decoration:none}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:900px){
+  #sec-nav .nav{height:78px;padding:14px 16px;margin:0 3%;border-top:0}
+  #sec-nav .logo img{height:34px}
+  #sec-nav .nav-links,#sec-nav .nav-meta{display:none}
+  #sec-nav .menu-trigger{display:flex}
+  .page{padding:0 3%}
+  .detail-hero{min-height:auto;padding:38px 4vw 34px;display:block}
+  .detail-hero::before{width:360px;height:360px;right:-160px;top:170px}
+  .detail-hero::after{width:500px;right:-250px;top:43%}
+  .detail-copy{padding-top:0}
+  .detail-copy .eyebrow{margin-bottom:28px}
+  .detail-copy h1{font-size:clamp(58px,17vw,82px);max-width:6ch}
+  .detail-type{margin-top:22px;font-size:11px}
+  .detail-intro{margin-top:15px;font-size:11px;line-height:1.65;max-width:34ch}
+  .detail-button{margin-top:22px;padding:14px 17px;font-size:10px;gap:26px}
+  .detail-meta{margin-top:38px;gap:12px}
+  .meta-block{padding-top:9px}
+  .meta-label{font-size:8px;margin-bottom:6px}
+  .meta-value{font-size:9px}
+  .detail-visual{min-height:0;margin-top:34px}
+  .detail-visual .media-placeholder{width:100%;aspect-ratio:1604/980}
+  .media-label{font-size:8px}
+  .media-label strong{font-size:30px}
+  .media-label small{font-size:8px}
+  .detail-body{display:block;min-height:0}
+  .detail-side{padding:24px 4vw;border-right:0;border-bottom:1px solid var(--line)}
+  .detail-side .eyebrow{margin-bottom:17px}
+  .detail-side p{font-size:9px}
+  .detail-content{padding:26px 4vw 38px}
+  .detail-content .overview{display:block}
+  .detail-content h2{font-size:42px;margin-bottom:20px}
+  .detail-content .body-copy{font-size:10px;line-height:1.7}
+  .detail-media-grid{grid-template-columns:1fr 1fr;column-gap:8px;row-gap:0;margin-top:32px}
+  .detail-media-grid .media-placeholder{min-height:0}.detail-media-grid .wide{margin-left:0!important;width:auto!important;transform:none}
+  .detail-facts{margin-top:32px;padding-top:12px;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .detail-facts div{font-size:8px}
+  .next-work{padding:25px 4vw 32px;align-items:start;display:block}
+  .next-work h2,.next-work .next-title{font-size:43px}.next-work .next-title{margin-top:0;padding:0;border:0}
+  .next-work a{display:inline-block;margin-top:22px;font-size:9px;padding:12px 15px}
+  .works-hero{padding:40px 4vw 34px}
+  .works-hero .eyebrow{margin-bottom:24px}
+  .works-hero h1{font-size:clamp(64px,19vw,88px)}
+  .works-hero p{font-size:10px;line-height:1.65;margin-top:22px}
+  .works-hero .orbit{width:210px;height:210px;right:-105px;top:100px}
+  .works-hero .orbit::before{height:260px}
+  .works-hero .orbit::after{width:270px}
+  .works-note{display:none}
+  .works-media-strip{grid-template-columns:1fr 1fr;gap:8px;margin:0 4vw 38px}
+  .works-media-strip .media-placeholder{min-height:170px}
+  .works-media-strip .media-placeholder:nth-child(2){margin-top:32px}
+  .works-list{margin:0 4vw 45px}
+  .work-header{display:none}
+  .work-row{grid-template-columns:26px 1fr 26px;gap:10px;min-height:106px;padding:13px 0}
+  .work-number{font-size:8px;align-self:start;padding-top:3px}
+  .work-number i{display:none}
+  .work-label{display:none}
+  .work-title{font-size:31px}
+  .work-service{grid-column:2;font-size:8px;line-height:1.4;color:var(--muted);margin-top:5px}
+  .work-year{display:none}
+  .work-arrow{grid-column:3;grid-row:1 / span 2;align-self:center;font-size:17px}
+  #sec-footer .main{display:block;min-height:0}
+  #sec-footer .brand{min-height:150px;border-right:0;border-bottom:1px solid var(--line);padding:22px 4vw}
+  #sec-footer .mark{display:block;width:42px;height:42px;object-fit:contain;margin-bottom:8px}
+  #sec-footer .menu{display:none}
+  #sec-footer .locale{margin-top:12px}
+  #sec-footer .content{padding:28px 4vw;border-right:0}
+  #sec-footer h1{font-size:clamp(44px,13vw,60px)}
+  #sec-footer .contact-copy{font-size:9px;margin:16px 0 18px}
+  #sec-footer .channels{display:grid;grid-template-columns:1fr;gap:8px}
+  #sec-footer .channel{min-height:46px;padding:10px 12px;font-size:9px}
+  #sec-footer .icon{width:16px;height:16px;font-size:16px;line-height:16px}
+  #sec-footer .aside{display:none}
+  #sec-footer .bottom{min-height:100px;padding:17px 4vw;align-items:flex-start;flex-direction:column;justify-content:center;gap:11px}
+  #sec-footer .bottom-nav{gap:8px;font-size:8px;flex-wrap:wrap}
+  #sec-footer .legal{font-size:7px}
+}
+
+/* ---------- RUYA SIZING + MOBILE NAV REFINEMENT ---------- */
+#sec-nav .menu-trigger{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+  min-width:88px;
+  height:38px;
+  padding:0 12px;
+  border:1px solid var(--ink);
+  background:transparent;
+  color:var(--ink);
+  cursor:pointer;
+  font:500 11px/1 var(--mono);
+  letter-spacing:.08em;
+}
+#sec-nav .menu-trigger:hover{background:var(--ink);color:var(--paper)}
+#sec-nav .bars{width:20px;display:flex;flex-direction:column;gap:4px}
+#sec-nav .bars span{display:block;width:20px;height:1px;background:currentColor;transition:transform .2s ease,opacity .2s ease}
+#sec-nav .menu-trigger[aria-expanded="true"] .bars span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+#sec-nav .menu-trigger[aria-expanded="true"] .bars span:nth-child(2){opacity:0}
+#sec-nav .menu-trigger[aria-expanded="true"] .bars span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+.detail-intro{font-size:15.5px;line-height:1.72}
+.detail-content .body-copy{font-size:15px;line-height:1.78}
+.works-hero p{font-size:15px;line-height:1.72}
+
+@media(max-width:900px){
+  #sec-nav .nav{height:78px;padding:14px 16px;margin:0 3%}
+  #sec-nav .logo img{height:34px}
+  #sec-nav .nav-links,#sec-nav .nav-meta{display:none}
+  #sec-nav .menu-trigger{display:flex}
+  #sec-nav .nav-links.mobile-open{
+    display:flex;
+    position:absolute;
+    top:77px;
+    left:3%;right:3%;
+    padding:0;
+    background:var(--paper);
+    border:1px solid var(--line);
+    box-shadow:0 8px 22px rgba(17,17,15,.06);
+    flex-direction:column;
+    gap:0;
+    overflow:hidden;
+  }
+  #sec-nav .nav-links.mobile-open a{
+    display:flex;
+    align-items:center;
+    min-height:46px;
+    padding:0 16px;
+    border-bottom:1px solid var(--soft);
+    font-size:10px;
+    letter-spacing:.08em;
+  }
+  #sec-nav .nav-links.mobile-open a:last-child{border-bottom:0}
+  #sec-nav .nav-links.mobile-open a:hover{background:rgba(17,17,15,.045);opacity:1}
+
+  .detail-intro{font-size:13px;line-height:1.7;max-width:34ch}
+  .detail-content .body-copy{font-size:12px;line-height:1.75}
+  .works-hero p{font-size:12px;line-height:1.7}
+  .detail-side p{font-size:10px;line-height:1.7}
+}
+@media(max-width:380px){
+  #sec-nav .nav{padding-inline:13px}
+  #sec-nav .menu-trigger{min-width:82px;padding-inline:10px;font-size:10px}
+  #sec-nav .bars,#sec-nav .bars span{width:18px}
+  .detail-intro{font-size:12px}
+  .detail-content .body-copy{font-size:11px}
+  .works-hero p{font-size:11px}
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div id="sec-nav">
+<header class="nav">
+  <a class="logo" href="index.html" aria-label="Ruya Studios home">
+    <img src="assets/ruya.png" alt="Ruya Studios logo">
+  </a>
+  <nav class="nav-links">
+    <a href="works.html">WORK</a>
+    <a href="index.html#sec-preview">FRAGMENTS</a>
+    <a href="index.html#sec-index">SERVICES</a>
+    <a href="index.html#sec-portfolio">PORTFOLIO</a>
+    <a href="index.html#sec-contact">CONTACT</a>
+  </nav>
+  <div class="nav-meta">
+    <div class="divider">
+</div>
+    <div class="studio-tag">CREATIVE TECH STUDIO<br>EST. 2022</div>
+    <button class="talk-btn" type="button" onclick="document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})">LET&rsquo;S TALK <svg viewBox="0 0 16 16" fill="none">
+<path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.4"/>
+</svg>
+</button>
+  </div>
+  <button class="menu-trigger" type="button" aria-expanded="false" onclick="const n=document.querySelector('.nav-links'); n.classList.toggle('mobile-open'); this.setAttribute('aria-expanded', n.classList.contains('mobile-open'));">MENU <span class="bars">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</span>
+</button>
+</header>
+</div>
+<main class="page work-detail">
+<section class="detail-hero">
+<div class="detail-copy">
+<div class="eyebrow">
+<span>01</span>
+<span class="rule">
+</span>
+<span>/ SENTRY</span>
+</div>
+<h1>Sentry.</h1>
+<p class="detail-type">COGNITIVE MAPPING / SECURITY SOFTWARE</p>
+<p class="detail-intro">Sentry is a cognitive-mapping security software designed to make complex security environments easier to understand.</p>
+<a class="detail-button" href="#overview">
+<span>VIEW PROJECT</span>
+<span>↗</span>
+</a>
+<div class="detail-meta">
+<div class="meta-block">
+<div class="meta-label">CLIENT / PROJECT</div>
+<div class="meta-value">Cognitive Mapping Security Software</div>
+</div>
+<div class="meta-block">
+<div class="meta-label">YEAR</div>
+<div class="meta-value">2026</div>
+</div>
+<div class="meta-block">
+<div class="meta-label">SERVICES</div>
+<div class="meta-value">Cognitive Mapping / Software</div>
+</div>
+<div class="meta-block">
+<div class="meta-label">TYPE</div>
+<div class="meta-value">Digital / Creative Tech</div>
+</div>
+</div>
+</div>
+<div class="detail-visual">
+<div class="media-placeholder">
+<svg class="graph-mark" viewBox="0 0 90 90" aria-hidden="true">
+<circle cx="45" cy="45" r="31"/>
+<path d="M45 5v80M5 45h80"/>
+<path d="M15 70C28 26 49 22 74 13"/>
+</svg>
+<div class="media-label">
+<strong>SENTRY</strong>
+<span>1600 × 1720</span>
+<small>PLACEHOLDER MEDIA<br>REPLACE WITH PROJECT VISUAL</small>
+</div>
+</div>
+</div>
+</section>
+<section class="detail-body" id="overview">
+<aside class="detail-side">
+<div class="eyebrow">
+<span>02</span>
+<span class="rule">
+</span>
+<span>OVERVIEW</span>
+</div>
+<p>Cognitive-mapping security software<br>Complex environments, made legible</p>
+</aside>
+<div class="detail-content">
+<div class="overview">
+<h2>See the system.<br>Understand what matters.</h2>
+<p class="body-copy">Sentry transforms complex security information into a visual cognitive map. It brings together events, relationships, environments, patterns and areas of concern so people can understand the larger context rather than isolated pieces of information.</p>
+</div>
+<div class="detail-media-grid">
+<div class="media-placeholder small">
+<div class="media-label">
+<strong>01</strong>
+<span>RELATIONSHIPS / CONTEXT</span>
+</div>
+</div>
+<div class="media-placeholder wide">
+<div class="media-label">
+<strong>02</strong>
+<span>SIGNALS / PATTERNS</span>
+</div>
+</div>
+</div>
+<div class="detail-facts">
+<div>
+<span class="meta-label">ROLE</span>
+<br>Strategy / Product / Design</div>
+<div>
+<span class="meta-label">DELIVERABLES</span>
+<br>Cognitive map / Security software</div>
+<div>
+<span class="meta-label">FOCUS</span>
+<br>Signals → Relationships → Patterns → Understanding</div>
+</div>
+</div>
+</section>
+<section class="next-work">
+<div>
+<div class="eyebrow">
+<span>03</span>
+<span class="rule">
+</span>
+<span>NEXT PROJECT</span>
+</div>
+<a class="next-title" href="work-mercury.html">Mercury.</a>
+</div>
+<a href="works.html">VIEW ALL WORK ↗</a>
+</section>
+</main>
+<div id="sec-footer">
+<footer class="footer" id="contact">
+  <div class="shell">
+    <div class="main">
+      <svg class="geometry" viewBox="0 0 530 400" aria-hidden="true">
+<g fill="none" stroke="#888883" stroke-width="1">
+<circle cx="309" cy="205" r="132"/>
+<circle cx="309" cy="205" r="182" stroke-dasharray="5 9"/>
+<path d="M68 205h462M309 0v400M68 205c77 0 143 62 143 139"/>
+<rect x="155" y="259" width="10" height="10" fill="#111"/>
+</g>
+<path fill="#111" d="M309 168c0 25-12 37-37 37 25 0 37 12 37 37 0-25 12-37 37-37-25 0-37-12-37-37Z"/>
+</svg>
+      <aside class="brand">
+        <img class="mark" src="assets/ruya.png" alt="Ruya Studios logo">
+        <p class="brand-copy">RUYA STUDIOS<br>A CREATIVE TECH STUDIO<br>EST. 2022</p>
+        <ul class="menu">
+<li>IDEAS</li>
+<li>DESIGN</li>
+<li>DEVELOP</li>
+<li>LAUNCH</li>
+</ul>
+        <p class="locale">INDIA / GLOBAL</p>
+      </aside>
+      <section class="content">
+        <h1>Let&rsquo;s build<br>something great.</h1>
+        <p class="contact-copy">Have a project in mind or just want to<br>say hello? We&rsquo;d love to hear from you.</p>
+        <div class="channels">
+          <a class="channel" href="https://www.instagram.com/ruyastudios.in/" target="_blank" rel="noopener">
+<i class="icon fa-brands fa-instagram" aria-hidden="true"></i>INSTAGRAM<span class="arrow">↗</span>
+</a>
+          <a class="channel" href="https://api.whatsapp.com/send?phone=919061672490" target="_blank" rel="noopener">
+<i class="icon fa-brands fa-whatsapp" aria-hidden="true"></i>WHATSAPP<span class="arrow">↗</span>
+</a>
+          <a class="channel" href="mailto:hello@ruya.studio">
+<i class="icon fa-solid fa-envelope" aria-hidden="true"></i>EMAIL<span class="arrow">↗</span>
+</a>
+        </div>
+      </section>
+      <aside class="aside">
+<p class="tagline">A BRIGHTER<br>INTERNET<br>TOGETHER.</p>
+</aside>
+    </div>
+    <div class="bottom">
+<div class="legal">© 2022 — NOW&nbsp;&nbsp; RUYA STUDIOS. ALL RIGHTS RESERVED.</div>
+<nav class="bottom-nav">
+<a href="works.html">WORK</a>
+<span>/</span>
+<a href="works.html#services">SERVICES</a>
+<span>/</span>
+<a href="works.html#about">ABOUT</a>
+<span>/</span>
+<a href="#contact">CONTACT</a>
+</nav>
+</div>
+  </div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ruya Studios</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Hero fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Fragments (preview) fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Services (index) fonts -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Portfolio fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Contact CTA fonts -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+<!-- Footer fonts -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="website.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<div id="sec-nav">
+
+<header class="nav">
+  <a class="logo" href="index.html" aria-label="Ruya Studios home">
+    <img src="assets/ruya.png" alt="Ruya Studios logo">
+  </a>
+
+  <nav class="nav-links" id="site-nav-links">
+    <a href="works.html">WORK</a>
+    <a href="#sec-preview">FRAGMENTS</a>
+    <a href="#sec-index">SERVICES</a>
+    <a href="#sec-portfolio">PORTFOLIO</a>
+    <a href="#sec-contact">CONTACT</a>
+  </nav>
+
+  <div class="nav-meta">
+    <div class="divider"></div>
+    <div class="studio-tag">CREATIVE TECH STUDIO<br>EST. 2022</div>
+    <button class="talk-btn" type="button" data-open-modal="hireRuyaModal">
+      LET&rsquo;S TALK
+      <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <button class="menu-trigger" type="button" aria-expanded="false" aria-controls="site-nav-links" onclick="const n=document.querySelector('.nav-links'); n.classList.toggle('mobile-open'); this.setAttribute('aria-expanded', n.classList.contains('mobile-open'));">
+    MENU
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+</header>
+</div>
+
+<div id="sec-hero" class="page-section">
+
+
+<section class="hero">
+
+  <div class="decor" aria-hidden="true">
+
+    <!-- MOBILE ARTWORK: intentionally larger than the frame; the .hero's
+         overflow:hidden + html's overflow-x:hidden are what cut it off.
+         pathLength="1" normalizes every shape's length to 1, so the same
+         stroke-dasharray/offset trick draws lines, the circle, and paths
+         alike — the whole graphic draws itself on once on load. -->
+    <svg class="mobile-art" viewBox="0 0 640 640">
+      <line class="draw" pathLength="1" style="animation-delay:.05s" x1="500" y1="-40" x2="500" y2="900" stroke="var(--line-soft)" stroke-width="1"/>
+      <line class="draw" pathLength="1" style="animation-delay:.2s" x1="140" y1="480" x2="700" y2="480" stroke="var(--line-soft)" stroke-width="1"/>
+
+      <circle class="draw-fade" style="animation-delay:1.05s" cx="500" cy="480" r="330" stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="2 6" fill="none"/>
+      <circle class="draw" pathLength="1" style="animation-delay:.45s" cx="500" cy="480" r="230" stroke="var(--line)" stroke-width="1" fill="none"/>
+
+      <rect class="pop" style="animation-delay:1.25s" x="495" y="20" width="9" height="9" fill="var(--ink)"/>
+      <rect class="pop" style="animation-delay:1.35s" x="495" y="855" width="9" height="9" fill="var(--ink)"/>
+
+      <path class="pop" style="animation-delay:1.5s" d="M500 445 C 510 465, 515 470, 535 480 C 515 490, 510 495, 500 515 C 490 495, 485 490, 465 480 C 485 470, 490 465, 500 445 Z" fill="var(--ink)"/>
+    </svg>
+
+    <!-- DESKTOP GRAPH — its own element (separate from the labels below) -->
+    <div class="graph-frame">
+      <svg class="desktop-art" viewBox="0 0 780 700" preserveAspectRatio="xMidYMid meet">
+        <line class="draw" pathLength="1" style="animation-delay:.05s" x1="120" y1="0" x2="120" y2="700" stroke="var(--line-soft)" stroke-width="1"/>
+        <line class="draw" pathLength="1" style="animation-delay:.15s" x1="450" y1="20" x2="450" y2="680" stroke="var(--line-soft)" stroke-width="1"/>
+        <line class="draw" pathLength="1" style="animation-delay:.25s" x1="0" y1="345" x2="780" y2="345" stroke="var(--line-soft)" stroke-width="1"/>
+
+        <circle class="draw-fade" style="animation-delay:1.05s" cx="450" cy="345" r="235" stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="2 6" fill="none"/>
+        <circle class="draw" pathLength="1" style="animation-delay:.4s" cx="450" cy="345" r="160" stroke="var(--line)" stroke-width="1" fill="none"/>
+
+        <rect class="pop" style="animation-delay:1.5s" x="115" y="128" width="9" height="9" fill="var(--ink)"/>
+        <rect class="pop" style="animation-delay:1.6s" x="115" y="565" width="9" height="9" fill="var(--ink)"/>
+        <rect class="pop" style="animation-delay:1.7s" x="655" y="215" width="9" height="9" fill="var(--ink)"/>
+
+        <path class="draw" pathLength="1" style="animation-delay:.7s" d="M120 132 C 240 132, 340 250, 450 345 C 500 390, 580 405, 660 219"
+              fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+        <path class="draw" pathLength="1" style="animation-delay:.9s" d="M120 561 C 240 561, 360 470, 450 345"
+              fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+
+        <path class="pop" style="animation-delay:1.8s" d="M450 310 C 460 330, 465 335, 485 345 C 465 355, 460 360, 450 380 C 440 360, 435 355, 415 345 C 435 335, 440 330, 450 310 Z" fill="var(--ink)"/>
+      </svg>
+    </div>
+
+    <!-- DESKTOP LABELS — a separate element from .graph-frame above -->
+    <div class="labels-frame">
+      <div class="annot a-top-left">
+        THINK<br>SHAPE<br>BUILD<br>LAUNCH
+        <span class="tick" style="margin-top:8px;margin-bottom:0;"></span>
+      </div>
+
+      <div class="annot a-top-right right-align">
+        IDEAS,<br>GIVEN<br>FORM.
+      </div>
+
+      <div class="annot a-bottom-left">
+        FOR GOOD IDEAS<br>AND THE PEOPLE<br>BEHIND THEM.
+      </div>
+
+      <div class="annot a-coords coords">
+        10.8505&deg; N<br>76.2711&deg; E
+      </div>
+
+      <div class="annot a-era right-align">// 2022 &mdash; NOW</div>
+    </div>
+  </div>
+
+  <div class="text-blur"></div>
+
+  <div class="hero-inner">
+    <div class="eyebrow">
+      01 <span class="rule"></span> / RUYA STUDIOS
+    </div>
+
+    <h1>Your vision,<br>made visible.</h1>
+
+    <p class="lede">
+      We shape your vision into distinctive brands, digital experiences, and software that people remember.
+    </p>
+
+    <button class="cta">
+      SEE WHAT WE MAKE
+      <svg viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="hero-footer">
+    <div class="scroll-tag">
+      <svg viewBox="0 0 14 18" fill="none"><path d="M7 0V17M7 17L1 11M7 17L13 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      SCROLL<br>TO EXPLORE
+    </div>
+    <div class="location-tag">
+      RUYA STUDIOS<br>INDIA / GLOBAL
+    </div>
+  </div>
+
+</section>
+</div>
+
+<div id="sec-preview" class="page-section">
+<section class="section">
+
+  <div class="rule"></div>
+
+  <div class="index mono">
+    <span>02</span><span class="line"></span><span class="slash">/</span><span>FRAGMENTS</span>
+  </div>
+
+  <h1 class="title">Ideas<br>in<br>many<br>forms.</h1>
+
+  <div class="left-copy">
+    DESIGN<br>DEVELOPMENT<br>PHOTOGRAPHY<br>IDEAS<br>AND EVERYTHING<br>IN BETWEEN.
+  </div>
+
+  <div class="mobile-canvas-wrapper">
+    <img class="img clouds"
+      src="assets/1.png" alt="Fragments artwork">
+
+    <img class="img mountains"
+      src="assets/2.png" alt="Fragments artwork">
+
+    <div class="words">PLACES<br>PEOPLE<br>PERSPECTIVES</div>
+
+    <div class="top-card">
+      <div>BUILD<br>EXPLORE<br>REFINE<br><span>LAUNCH</span></div>
+    </div>
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+    <div class="arc a"></div>
+    <div class="arc b"></div>
+
+    <img class="img interior"
+      src="assets/3.png" alt="Fragments artwork">
+
+    <img class="img road"
+      src="assets/4.png" alt="Fragments artwork">
+
+    <div class="left-card">
+      IDEAS<br>TAKE<br>SHAPE
+    </div>
+
+    <img class="img plant"
+      src="assets/5.png" alt="Fragments artwork">
+
+    <div class="light-card">
+      <div class="statement">A<br><span class="italic">brighter</span><br>internet.</div>
+    </div>
+  </div>
+
+  <div class="right-copy">
+    REAL PEOPLE<br>MEANINGFUL WORK<br>A BRIGHTER INTERNET.
+  </div>
+
+  <div class="coords">10.8505° N<br>76.2711° E</div>
+
+  <div class="vertical">RUYA STUDIOS&nbsp;&nbsp;&nbsp; INDIA / GLOBAL</div>
+
+  <div class="right-bottom">
+    FOR PEOPLE<br>IDEAS<br>AND A MORE<br>OPEN WEB.
+  </div>
+
+  <div class="year">// 2022 — NOW</div>
+  <div class="scroll">↓&nbsp;&nbsp; SCROLL</div>
+
+</section>
+</div>
+
+<div class="page-divider"></div>
+
+<div id="sec-index" class="page-section">
+<section class="expertise">
+      <header class="intro">
+        <p class="section-number">02 <i></i> /&nbsp; SERVICES</p>
+        <h1>What<br />we do.</h1>
+        <div class="art art-left"></div><div class="art art-centre"></div><div class="art art-right"></div>
+        <div class="point point-left"></div><div class="point point-centre"></div><div class="point point-right"></div>
+      </header>
+
+      <section class="services-grid" id="cards" aria-label="Our services">
+        <article class="service-card branding">
+          <i class="service-icon" data-lucide="code-xml" aria-hidden="true"></i>
+          <div class="card-copy"><h2>Web Design &amp;<br />Development</h2><p>Turn your corner of the internet into somewhere worth staying.</p></div>
+        </article>
+        <article class="service-card website">
+          <i class="service-icon" data-lucide="palette" aria-hidden="true"></i>
+          <div class="card-copy"><h2>Logo &amp; Brand<br />Identity</h2><p>Give good ideas a face people won't forget.</p></div>
+        </article>
+        <article class="service-card product">
+          <i class="service-icon" data-lucide="workflow" aria-hidden="true"></i>
+          <div class="card-copy"><h2>Automations &amp;<br />Integrations</h2><p>Connect the dots between the tools keeping your business moving.</p></div>
+        </article>
+        <article class="service-card support">
+          <i class="service-icon" data-lucide="wrench" aria-hidden="true"></i>
+          <div class="card-copy"><h2>Product Design &amp;<br />Software</h2><p>Make software that solves the problem without becoming another one.</p></div>
+        </article>
+      </section>
+      <div class="below-notes" aria-label="Studio principles">
+        <aside class="top-note"><i></i>IDEAS<br />DESIGN<br />DEVELOP<br />LAUNCH</aside>
+        <aside class="bottom-note"><i></i>FOR PEOPLE<br />IDEAS AND A<br />MORE OPEN WEB.</aside>
+      </div>
+    </section>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons({ attrs: { "stroke-width": 1.3 } });</script>
+</div>
+
+<div class="page-divider"></div>
+
+<div id="sec-portfolio" class="page-section">
+<section class="portfolio-page">
+      <svg class="graph graph-top" viewBox="0 0 1600 660" preserveAspectRatio="none" aria-hidden="true">
+        <path class="draw" pathLength="1" d="M1144 0v435M1402 30v406M1030 191h372" />
+        <path class="draw dashed" pathLength="1" d="M818 455A315 315 0 0 1 1401 203" />
+        <path class="draw" pathLength="1" d="M1402 241c83 115 126 179 198 181" />
+        <path class="spark" d="M1144 142c0 31-14 48-47 49 33 0 47 18 47 49 0-31 15-49 48-49-33-1-48-18-48-49Z" />
+        <rect class="pop-in" x="1396" y="235" width="12" height="12" />
+      </svg>
+      <svg class="graph graph-bottom" viewBox="0 0 1600 250" preserveAspectRatio="none" aria-hidden="true">
+        <path class="draw" pathLength="1" d="M0 8c75 90 166 104 267 105 95 0 126 34 194 104" />
+        <path class="draw" pathLength="1" d="M267 66v79M1413 28v117" />
+        <rect class="pop-in" x="261" y="108" width="12" height="12" />
+      </svg>
+
+      <header class="hero">
+        <p class="eyebrow"><span>03</span><i></i><b>/</b> WORK</p>
+        <h1>Portfolio.</h1>
+        <p class="description">A collection of ideas,<br />built for the real world.</p>
+      </header>
+      <aside class="studio-menu"><i></i>IDEAS<br />DESIGN<br />DEVELOP<br />LAUNCH<i></i></aside>
+
+      <section class="portfolio-panel" aria-label="Portfolio projects">
+        <div class="filter-bar">
+          <span class="filter-label">View</span>
+          <div class="filter-menu">
+            <button class="filter-trigger" type="button" aria-expanded="false" aria-controls="filter-options">All works<i></i></button>
+            <div class="filter-options" id="filter-options" role="menu" hidden>
+              <button type="button" role="menuitem" data-filter="all">All works</button>
+              <button type="button" role="menuitem" data-filter="design">Design</button>
+              <button type="button" role="menuitem" data-filter="development">Development</button>
+              <button type="button" role="menuitem" data-filter="branding">Branding</button>
+              <button type="button" role="menuitem" data-filter="automation">Automation</button>
+            </div>
+          </div>
+        </div>
+        <div class="list-head"><span></span><span>Project</span><span></span><span>Services</span><span>Year</span><span></span></div>
+        <div class="project-list">
+          <a class="project-row" data-categories="development" href="work-sentry.html"><span class="number">01<i></i></span><span class="project-label">Cognitive-mapping<br />security system</span><strong>SENTRY</strong><span class="services">Systems /<span class="mobile-break"> </span>Software</span><span class="year">2026</span><span class="arrow">↗</span></a>
+          <a class="project-row" data-categories="development" href="work-mercury.html"><span class="number">02<i></i></span><span class="project-label">Cognitive-mapping<br />security system</span><strong>MERCURY</strong><span class="services">Systems /<span class="mobile-break"> </span>Software</span><span class="year">2026</span><span class="arrow">↗</span></a>
+          <a class="project-row long-title" data-categories="development automation" href="work-freelance.html"><span class="number">03<i></i></span><span class="project-label">Freelance development,<br />Saudi Arabia &amp; Egypt</span><strong>FREELANCE</strong><span class="services">Development /<br />Automations</span><span class="year">2022 –<br />Present</span><span class="arrow">↗</span></a>
+          <a class="project-row long-title" data-categories="branding design" href="work-seven-years.html"><span class="number">04<i></i></span><span class="project-label">Baby shop<br />brand campaign</span><strong>SEVEN YEARS</strong><span class="services">Brand Identity /<br />Product Design</span><span class="year">2026</span><span class="arrow">↗</span></a>
+          <a class="project-row" data-categories="design development" href="work-lysis-grafix.html"><span class="number">05<i></i></span><span class="project-label">Social media<br />graphic design</span><strong>Lysis Grafix</strong><span class="services">Design / Development</span><span class="year">2026</span><span class="arrow">↗</span></a>
+          <a class="project-row" data-categories="design automation" href="work-rayyan-crescent.html"><span class="number">06<i></i></span><span class="project-label">Corporate company<br />branding</span><strong>Rayyan &amp; Crescent</strong><span class="services">Product Design /<br />Automations</span><span class="year">2026</span><span class="arrow">↗</span></a>
+        </div>
+      </section>
+
+      <div class="scroll-note"><span>↓</span><p>SCROLL<br />FOR MORE</p></div>
+      <div class="location">RUYA STUDIOS<br />INDIA / GLOBAL<i></i></div>
+    </section>
+    <script>
+      const filterMenu = document.querySelector('.filter-menu');
+      const filterTrigger = document.querySelector('.filter-trigger');
+      const filterOptions = document.querySelector('.filter-options');
+      const filterButtons = document.querySelectorAll('[data-filter]');
+      const rows = document.querySelectorAll('.project-row');
+      const closeMenu = () => { filterOptions.hidden = true; filterTrigger.setAttribute('aria-expanded', 'false'); };
+      filterTrigger.addEventListener('click', () => {
+        const isOpen = filterTrigger.getAttribute('aria-expanded') === 'true';
+        filterOptions.hidden = isOpen;
+        filterTrigger.setAttribute('aria-expanded', String(!isOpen));
+      });
+      filterButtons.forEach(button => button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        filterTrigger.innerHTML = `${button.textContent.trim()}<i></i>`;
+        closeMenu();
+        rows.forEach((row, index) => {
+          const visible = filter === 'all' || row.dataset.categories.includes(filter);
+          row.classList.toggle('is-hidden', !visible);
+          if (visible) { row.style.animation = 'none'; void row.offsetWidth; row.style.animation = `row-draw .65s cubic-bezier(.16,1,.3,1) ${index * .07}s both`; }
+        });
+      }));
+      document.addEventListener('click', event => { if (!filterMenu.contains(event.target)) closeMenu(); });
+    </script>
+</div>
+
+<div id="sec-contact" class="page-section">
+<div class="section-break"></div>
+
+  <section class="contact-cta" aria-labelledby="contact-heading">
+    <svg class="decor" viewBox="0 0 1728 900" preserveAspectRatio="none" aria-hidden="true">
+      <path class="solid" d="M0 57 C221 57 373 230 373 457 C373 574 342 660 308 694" />
+      <path class="dash" d="M308 694 C430 690 536 752 551 900" />
+      <path class="solid" d="M1239 0 C1262 54 1288 95 1326 126" />
+      <path class="dash" d="M1286 95 C1393 244 1572 302 1728 275" />
+      <line class="solid" x1="232" y1="83" x2="232" y2="217" />
+      <line class="faint" x1="169" y1="146" x2="294" y2="146" />
+      <line class="solid" x1="1288" y1="29" x2="1288" y2="263" />
+      <line class="faint" x1="1224" y1="94" x2="1349" y2="94" />
+      <line class="solid" x1="308" y1="616" x2="308" y2="763" />
+      <line class="faint" x1="242" y1="694" x2="372" y2="694" />
+      <rect x="225" y="139" width="14" height="14" />
+      <rect x="1281" y="87" width="14" height="14" />
+      <rect x="301" y="687" width="14" height="14" />
+    </svg>
+
+    <svg class="sparkle" viewBox="0 0 270 270" aria-hidden="true">
+      <g stroke="#a8aaa8" stroke-width="1" fill="none">
+        <path d="M135 0v106M135 164v106M0 135h106M164 135h106" />
+        <path d="M194 87v96M146 135h96" opacity=".55" />
+      </g>
+      <path fill="#080808" d="M135 106c0 20-9 29-29 29 20 0 29 9 29 29 0-20 9-29 29-29-20 0-29-9-29-29Z" />
+    </svg>
+
+    <div class="content">
+      <svg class="plane" viewBox="0 0 88 88" fill="none" aria-hidden="true">
+        <path d="m12 38 67-26-23 66-12-31-32-9Z" stroke="currentColor" stroke-width="4.5" stroke-linejoin="miter" />
+        <path d="m44 47 35-35" stroke="currentColor" stroke-width="4.5" />
+      </svg>
+      <h1 id="contact-heading">Interested in working<br />together?</h1>
+      <button class="button" type="button" data-open-modal="hireRuyaModal"><span>Get in Touch</span><span class="arrow" aria-hidden="true">↗</span></button>
+    </div>
+  </section>
+
+  <div class="section-break"></div>
+</div>
+
+<div id="sec-footer" class="page-section">
+<footer class="footer">
+    <div class="shell">
+      <div class="main">
+        <svg class="geometry" viewBox="0 0 530 400" aria-hidden="true"><g class="orb"><circle class="fine" cx="309" cy="205" r="132"/><circle class="fine dash" cx="309" cy="205" r="182"/><path class="fine" d="M68 205h462M309 0v400M68 205c77 0 143 62 143 139"/><rect x="155" y="259" width="10" height="10" fill="#080808"/></g><path class="spark" fill="#080808" d="M309 168c0 25-12 37-37 37 25 0 37 12 37 37 0-25 12-37 37-37-25 0-37-12-37-37Z"/></svg>
+        <aside class="brand">
+          <img class="mark" src="assets/ruya.png" alt="Ruya Studios logo">
+          <p class="brand-copy">RUYA STUDIOS<br>A CREATIVE TECH STUDIO<br>EST. 2022</p>
+          <ul class="menu"><li>IDEAS</li><li>DESIGN</li><li>DEVELOP</li><li>LAUNCH</li></ul>
+          <p class="locale">INDIA / GLOBAL</p>
+        </aside>
+
+        <section class="content" aria-labelledby="footer-title">
+          <h1 id="footer-title">Let’s build<br>something great.</h1>
+          <p class="contact-copy">Have a project in mind or just want to<br>say hello? We’d love to hear from you.</p>
+          <div class="channels">
+            <a class="channel" href="https://www.instagram.com/ruyastudios.in/" aria-label="Follow us on Instagram"><i class="icon fa-brands fa-instagram" aria-hidden="true"></i> INSTAGRAM <span class="arrow">↗</span></a>
+            <a class="channel" href="https://api.whatsapp.com/send?phone=919061672490" aria-label="Message us on WhatsApp"><i class="icon fa-brands fa-whatsapp" aria-hidden="true"></i> WHATSAPP <span class="arrow">↗</span></a>
+            <a class="channel" href="mailto:hello@ruya.studio"><i class="icon fa-solid fa-envelope" aria-hidden="true"></i> EMAIL <span class="arrow">↗</span></a>
+          </div>
+        </section>
+
+        <aside class="aside"><p class="tagline">A BRIGHTER<br>INTERNET<br>TOGETHER.</p></aside>
+      </div>
+      <div class="bottom"><div class="legal">© 2022 — NOW&nbsp;&nbsp; RUYA STUDIOS. ALL RIGHTS RESERVED.</div><nav class="bottom-nav" aria-label="Footer navigation"><a href="#work">WORK</a><span>/</span><a href="#services">SERVICES</a><span>/</span><a href="#about">ABOUT</a><span>/</span><a href="#journal">JOURNAL</a><span>/</span><a href="#contact">CONTACT</a></nav></div>
+    </div>
+  </footer>
+</div>
+
+<section class="hire-modal" id="hireRuyaModal" role="dialog" aria-modal="true" aria-labelledby="hireRuyaTitle">
+  <div class="hire-modal__backdrop" data-close-modal></div>
+  <div class="hire-modal__dialog">
+    <button class="close" type="button" aria-label="Close hire Ruya modal" data-close-modal></button>
+    <span class="arc arc--top"></span><span class="arc arc--bottom"></span>
+    <span class="crosshair crosshair--top"></span><span class="crosshair crosshair--right"></span>
+    <span class="square square--top"></span><span class="square square--bottom"></span>
+    <p class="eyebrow">HIRE RUYA</p>
+    <h1 id="hireRuyaTitle">Let&rsquo;s build something<br>visionary.</h1>
+    <nav class="contact-options" aria-label="Contact options">
+      <a class="contact-option" href="mailto:hello@ruya.studio"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="7" y="12" width="50" height="38" rx="2"/><path d="m8 15 24 19 24-19"/></svg><span>Send us an Email</span></a>
+      <a class="contact-option" href="https://api.whatsapp.com/send?phone=919061672490"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M21 9c2-2 7-1 9 2l5 9c1 3 0 5-3 7l-4 3c4 8 8 12 16 16l3-4c2-3 4-4 7-3l9 5c3 2 4 7 2 9l-4 4c-4 4-10 5-15 3C29 55 9 35 8 18c-1-6 0-11 4-15z"/></svg><span>WhatsApp</span></a>
+    </nav>
+  </div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  var modal = document.getElementById('hireRuyaModal');
+  if (!modal) return;
+  var openModal = function(){ modal.classList.add('is-open'); };
+  var closeModal = function(){ modal.classList.remove('is-open'); };
+  document.querySelectorAll('[data-open-modal="hireRuyaModal"]').forEach(function(btn){
+    btn.addEventListener('click', openModal);
+  });
+  document.querySelectorAll('[data-close-modal]').forEach(function(btn){
+    btn.addEventListener('click', closeModal);
+  });
+  document.addEventListener('keydown', function(event){
+    if (event.key === 'Escape') closeModal();
+  });
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- reveal each section's intro animation only once it has
+     scrolled into view ---- */
+  var sections = document.querySelectorAll('.page-section');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    sections.forEach(function(sec){ io.observe(sec); });
+  } else {
+    sections.forEach(function(sec){ sec.classList.add('in-view'); });
+  }
+
+})();
+</script>
+
+</body>
+</html>

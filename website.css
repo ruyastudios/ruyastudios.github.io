@@ -1313,7 +1313,8 @@ body { min-width: 320px; }
 #sec-footer h1 { font-size:clamp(2.75rem, 12.5vw, 3.9rem); }
 #sec-footer .contact-copy { margin:1.2rem 0 1.35rem; font-size:11px; }
 #sec-footer .channels { width:100%; gap:.8rem; }
-#sec-footer .channel { width:100%; min-width:0; min-height:54px; padding:.75rem 1rem; }
+#sec-footer .channel { width:100%; min-width:0; min-height:54px; padding:.65rem .7rem; gap:.55rem; }
+#sec-footer .channel .icon { width:20px; height:20px; }
 #sec-footer .geometry { top:165px; right:-330px; opacity:.25; }
 #sec-footer .bottom { min-height:118px; padding:1.2rem 1.25rem; align-items:flex-start; flex-direction:column; justify-content:center; gap:.85rem; }
 #sec-footer .bottom-nav { justify-content:flex-start; gap:.8rem 1.15rem; }
